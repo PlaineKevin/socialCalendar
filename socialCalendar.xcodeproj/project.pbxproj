@@ -70,7 +70,6 @@
 		02C91E971A2E288700B3977B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		02F911981A2E604C00B15744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Miles.storyboard; sourceTree = "<group>"; };
 		02F9119B1A2E61EE00B15744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Kevin.storyboard; sourceTree = "<group>"; };
-		02F911A61A2E63AE00B15744 /* socialCalendar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "socialCalendar-Bridging-Header.h"; sourceTree = "<group>"; };
 		1036795F1A2E3124001D63D2 /* friends.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = friends.xcdatamodel; sourceTree = "<group>"; };
 		1079FEEE1A2D4AD900654080 /* socialCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079FEF21A2D4AD900654080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,7 +152,6 @@
 				1079FEF01A2D4AD900654080 /* socialCalendar */,
 				1079FF061A2D4AD900654080 /* socialCalendarTests */,
 				1079FEEF1A2D4AD900654080 /* Products */,
-				02F911A61A2E63AE00B15744 /* socialCalendar-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
