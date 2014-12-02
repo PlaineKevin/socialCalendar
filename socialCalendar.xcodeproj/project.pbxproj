@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		103679601A2E3124001D63D2 /* friends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */; };
 		1079FEF41A2D4AD900654080 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FEF31A2D4AD900654080 /* AppDelegate.swift */; };
 		1079FEF61A2D4AD900654080 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FEF51A2D4AD900654080 /* ViewController.swift */; };
 		1079FEF91A2D4AD900654080 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1079FEF71A2D4AD900654080 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1036795F1A2E3124001D63D2 /* friends.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = friends.xcdatamodel; sourceTree = "<group>"; };
 		1079FEEE1A2D4AD900654080 /* socialCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079FEF21A2D4AD900654080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079FEF31A2D4AD900654080 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				1079FEF21A2D4AD900654080 /* Info.plist */,
+				1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				1079FEF61A2D4AD900654080 /* ViewController.swift in Sources */,
 				10F2D1381A2E2ABD00DDD58D /* FriendManager.swift in Sources */,
 				1079FEF41A2D4AD900654080 /* AppDelegate.swift in Sources */,
+				103679601A2E3124001D63D2 /* friends.xcdatamodeld in Sources */,
 				10F2D1361A2E2AB000DDD58D /* Friend.swift in Sources */,
 				10F2D1341A2E2A9600DDD58D /* FriendsTableViewController.swift in Sources */,
 				10F2D1321A2E29C300DDD58D /* EditFriendsTableViewController.swift in Sources */,
@@ -451,6 +455,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1036795F1A2E3124001D63D2 /* friends.xcdatamodel */,
+			);
+			currentVersion = 1036795F1A2E3124001D63D2 /* friends.xcdatamodel */;
+			path = friends.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1079FEE61A2D4AD800654080 /* Project object */;
 }
