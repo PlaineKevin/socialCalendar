@@ -7,3 +7,28 @@
 //
 
 import Foundation
+import UIKit
+
+private let friendManagerInstance = FriendManager()
+
+class FriendManager {
+    var friends = [Friend]()
+    
+    class var sharedFriendManager: FriendManager {
+        return friendManagerInstance
+    }
+    
+    init(){}
+    
+    func filteredRemindersForSearchText(searchText: String) -> [Friend] {
+        
+        let filteredReminders = friends.filter { (friend: Friend) -> Bool in
+            let stringMatch = friend.username.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+            
+            return stringMatch != nil
+        }
+        
+        return filteredReminders
+        
+    }
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UIF-fb-4UN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wEX-Ib-vbc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -187,7 +187,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="93" id="JXv-uK-Aw8">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="93" id="JXv-uK-Aw8" customClass="FriendTableViewCell" customModule="socialCalendar" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JXv-uK-Aw8" id="cyr-sh-l3P">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -204,7 +204,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="TLm-UE-7ES" kind="show" id="XPj-3G-N0B"/>
+                                    <outlet property="userImage" destination="jdt-sk-aCS" id="cm2-2o-gYW"/>
+                                    <outlet property="usernameLabel" destination="gc1-eB-chN" id="aIi-sU-Gzm"/>
+                                    <segue destination="TLm-UE-7ES" kind="show" identifier="friendDetailSegue" id="XPj-3G-N0B"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -216,7 +218,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="uHY-ex-Eib">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="r9S-3y-4pA">
                             <connections>
-                                <segue destination="sHw-Ib-w0y" kind="presentation" id="zC0-bH-VPv"/>
+                                <segue destination="sHw-Ib-w0y" kind="presentation" identifier="addFriendsSegue" id="zC0-bH-VPv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -240,7 +242,7 @@
         <!--Edit Friend-->
         <scene sceneID="wKV-BH-hJ4">
             <objects>
-                <tableViewController id="nMo-R0-QCk" sceneMemberID="viewController">
+                <tableViewController id="nMo-R0-QCk" customClass="EditFriendsTableViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6Pa-gW-6Zo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,6 +254,13 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pbD-fZ-J7A" id="9Cg-T1-Hzz">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GJY-YI-4E3">
+                                                    <rect key="frame" x="0.0" y="6" width="320" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -262,6 +271,13 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qwh-4b-fn8" id="rcM-p0-czZ">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ur4-5V-WHZ">
+                                                    <rect key="frame" x="0.0" y="5" width="320" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -275,7 +291,17 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1CX-7t-7wN">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                                    <gestureRecognizers/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="bzd-1M-SC2" appends="YES" id="7dm-2T-3io"/>
+                                                    </connections>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap to add image!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ni2-m5-O3D">
+                                                    <rect key="frame" x="91" y="89" width="138" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -288,13 +314,31 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit Friend" id="1bY-yQ-w8w">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="OXT-vh-FFG"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="LDX-sn-d0h"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="OXT-vh-FFG">
+                            <connections>
+                                <action selector="cancelButtonTap:" destination="nMo-R0-QCk" id="Cu5-ip-RAP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="LDX-sn-d0h">
+                            <connections>
+                                <action selector="saveButtonTap:" destination="nMo-R0-QCk" id="zcb-Qt-g3F"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="1CX-7t-7wN" id="h7L-wa-ppB"/>
+                        <outlet property="realNameTextField" destination="Ur4-5V-WHZ" id="ZUG-UF-tB7"/>
+                        <outlet property="usernameTextField" destination="GJY-YI-4E3" id="a9f-c7-lzS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ncl-7Q-3pH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bzd-1M-SC2">
+                    <connections>
+                        <action selector="handleImageTap:" destination="nMo-R0-QCk" id="7wS-2s-5RW"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1692" y="1444"/>
+            <point key="canvasLocation" x="1694" y="1444"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qSA-1M-xx0">
@@ -316,7 +360,7 @@
         <!--Friend-->
         <scene sceneID="MM1-0U-YPU">
             <objects>
-                <tableViewController id="TLm-UE-7ES" sceneMemberID="viewController">
+                <tableViewController id="TLm-UE-7ES" customClass="FriendDetailsTableViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TOK-Te-laK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -375,6 +419,10 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ynm-3O-0OK">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="326"/>
+                                                    <gestureRecognizers/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="bng-eZ-iOF" appends="YES" id="Dh3-bs-mzp"/>
+                                                    </connections>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -390,13 +438,23 @@
                     <navigationItem key="navigationItem" title="Friend" id="G66-7z-fO8">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="nms-Ro-3e0">
                             <connections>
-                                <segue destination="sHw-Ib-w0y" kind="presentation" id="dJ3-mg-uco"/>
+                                <segue destination="sHw-Ib-w0y" kind="presentation" identifier="editFriendsSegue" id="dJ3-mg-uco"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="Ynm-3O-0OK" id="ZFn-D3-Ba4"/>
+                        <outlet property="realNameDetails" destination="spM-lA-eTn" id="AFe-l1-Exy"/>
+                        <outlet property="userNameDetails" destination="wgj-d5-uak" id="DPF-uJ-qbJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1d-Tb-tcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bng-eZ-iOF">
+                    <connections>
+                        <action selector="friendImageViewTap:" destination="TLm-UE-7ES" id="xOj-9T-spz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1279" y="723"/>
         </scene>

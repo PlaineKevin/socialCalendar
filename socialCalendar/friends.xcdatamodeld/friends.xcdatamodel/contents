@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Friend" syncable="YES"/>
+    <entity name="Friend" syncable="YES">
+        <attribute name="realName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="friends" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friend" syncable="YES"/>
+    </entity>
     <entity name="FriendManager" syncable="YES"/>
     <elements>
-        <element name="Friend" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="Friend" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="FriendManager" positionX="-54" positionY="-9" width="128" height="45"/>
     </elements>
 </model>
