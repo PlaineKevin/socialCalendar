@@ -17,8 +17,8 @@ class FriendDetailsTableViewController: UITableViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func friendImageViewTap(sender: UITapGestureRecognizer) {
-        if tripImageView.image != nil {
-            var activityController = UIActivityViewController(activityItems: [tripImageView.image!], applicationActivities: nil)
+        if imageView.image != nil {
+            var activityController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
             
             presentViewController(activityController, animated: true, completion: nil)
         }

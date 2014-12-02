@@ -36,17 +36,17 @@ class Friend {
         self.init(username: username!, realName: realName, image: image)
     }
     
-    func toPropertyListObject() -> NSDictionary {
-        
-        var dictionary: NSMutableDictionary = [
-            "username":username,
-            "realName":realName
-        ]
-        
-        if image != nil {
-            // turn an image into a jpeg then the scale for the quality is 0-1
-            dictionary["image-data"] = UIImageJPEGRepresentation(image, 0.7)
-        }
-        return dictionary
-    }
+//    func toPropertyListObject() -> NSDictionary {
+//        
+//        var dictionary: NSMutableDictionary = [
+//            "username":username,
+//            "realName":realName
+//        ]
+//        
+//        if image != nil {
+//            // turn an image into a jpeg then the scale for the quality is 0-1
+//            dictionary["image-data"] = UIImageJPEGRepresentation(image, 0.7)
+//        }
+//        return dictionary
+//    }
 }

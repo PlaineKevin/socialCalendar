@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class EditFriendsTableViewController: UITableViewController {
+class EditFriendsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var friend: Friend!
     

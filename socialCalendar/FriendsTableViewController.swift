@@ -46,11 +46,11 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         
         if tableView == searchDisplayController!.searchResultsTableView
         {
-            if filteredTrips == nil {
+            if filteredFriends == nil {
                 return 0
             }
             else {
-                return filteredTrips!.count
+                return filteredFriends!.count
             }
             
         } else {
@@ -106,7 +106,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         
         let friendToMove = friendManager.friends[fromIndexPath.row]
         friendManager.friends.removeAtIndex(fromIndexPath.row)
-        friendManager.friends.insert(tripToMove, atIndex: toIndexPath.row)
+        friendManager.friends.insert(friendToMove, atIndex: toIndexPath.row)
     }
     
     
