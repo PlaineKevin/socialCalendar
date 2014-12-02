@@ -58,6 +58,7 @@
 		02C91E8C1A2E094F00B3977B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		02C91E8D1A2E094F00B3977B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		02C91E8E1A2E094F00B3977B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		02C91E931A2E09CB00B3977B /* socialCalendar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "socialCalendar-Bridging-Header.h"; sourceTree = "<group>"; };
 		1079FEEE1A2D4AD900654080 /* socialCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079FEF21A2D4AD900654080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079FEF31A2D4AD900654080 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 				1079FEF01A2D4AD900654080 /* socialCalendar */,
 				1079FF061A2D4AD900654080 /* socialCalendarTests */,
 				1079FEEF1A2D4AD900654080 /* Products */,
+				02C91E931A2E09CB00B3977B /* socialCalendar-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -402,6 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -409,6 +412,8 @@
 				INFOPLIST_FILE = socialCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "socialCalendar-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -416,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -423,6 +429,7 @@
 				INFOPLIST_FILE = socialCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "socialCalendar-Bridging-Header.h";
 			};
 			name = Release;
 		};
