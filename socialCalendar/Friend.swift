@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-class Friend {
+class Friend: NSManagedObject {
     var username: String = ""
     var realName: String?
     var image: UIImage?

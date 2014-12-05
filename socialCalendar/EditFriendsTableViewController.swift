@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import CoreData
 
 class EditFriendsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
