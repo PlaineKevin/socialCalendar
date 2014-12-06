@@ -12,6 +12,8 @@ import CoreData
 
 class EditFriendsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var friendList = FriendManager.sharedFriendManager.friends
+    
     var friend: Friend!
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -34,24 +36,10 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func saveButtonTap(sender: AnyObject) {
-        if friend == nil {
-            
-            friend = Friend(username: usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
-            
-            FriendManager.sharedFriendManager.friends.append(friend)
-        }
-        else {
-            friend.username = usernameTextField.text
-            friend.realName = realNameTextField.text
-            friend.image = imageView.image
 
-        }
-        
-        dismissViewControllerAnimated(true, completion: nil)
-    }
     
     @IBAction func handleImageTap(sender: UITapGestureRecognizer) {
+        print("i'm here");
         if UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum) {
             
             var imagePicker = UIImagePickerController()
@@ -69,6 +57,44 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - Core Data
+    
+    @IBAction func saveButtonTap(sender: AnyObject) {
+        if friend == nil {
+            
+            createFriendWithContent(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
+            
+//            FriendManager.sharedFriendManager.friends.append(friend)
+        }
+        else {
+            friend.username = usernameTextField.text
+            friend.realName = realNameTextField.text
+            friend.image = imageView.image
+            AppDelegate.sharedAppDelegate.saveContext()
+            
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func createFriendWithContent(username: String, realName: String?, image: UIImage?) {
+        let managedObjectContext = AppDelegate.sharedAppDelegate.managedObjectContext!
+        
+        let entity = NSEntityDescription.entityForName("Friend", inManagedObjectContext: managedObjectContext)
+        
+        var newFriend = Friend(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
+        
+        newFriend.setValue(username, forKey: "userName")
+        newFriend.realName = realName
+        newFriend.image = image
+        
+        friendList.append(newFriend)
+        
+        AppDelegate.sharedAppDelegate.saveContext()
+    }
+    
+
     
 
 }

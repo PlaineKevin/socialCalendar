@@ -3,7 +3,7 @@
     <entity name="Friend" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="realName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Friend" positionX="-63" positionY="-18" width="128" height="90"/>

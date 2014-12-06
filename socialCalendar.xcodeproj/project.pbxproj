@@ -27,6 +27,7 @@
 		02F911991A2E604C00B15744 /* Miles.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F911971A2E604C00B15744 /* Miles.storyboard */; };
 		02F9119C1A2E61EE00B15744 /* Kevin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F9119A1A2E61EE00B15744 /* Kevin.storyboard */; };
 		103679601A2E3124001D63D2 /* friends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */; };
+		1053D7D41A320C99006CB437 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1053D7D31A320C99006CB437 /* CoreData.framework */; };
 		1079FEF41A2D4AD900654080 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FEF31A2D4AD900654080 /* AppDelegate.swift */; };
 		1079FEF61A2D4AD900654080 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FEF51A2D4AD900654080 /* ViewController.swift */; };
 		1079FEFB1A2D4AD900654080 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1079FEFA1A2D4AD900654080 /* Images.xcassets */; };
@@ -71,6 +72,7 @@
 		02F911981A2E604C00B15744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Miles.storyboard; sourceTree = "<group>"; };
 		02F9119B1A2E61EE00B15744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Kevin.storyboard; sourceTree = "<group>"; };
 		1036795F1A2E3124001D63D2 /* friends.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = friends.xcdatamodel; sourceTree = "<group>"; };
+		1053D7D31A320C99006CB437 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1079FEEE1A2D4AD900654080 /* socialCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079FEF21A2D4AD900654080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079FEF31A2D4AD900654080 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1053D7D41A320C99006CB437 /* CoreData.framework in Frameworks */,
 				02C91E8A1A2E093200B3977B /* SystemConfiguration.framework in Frameworks */,
 				02C91E881A2E092800B3977B /* StoreKit.framework in Frameworks */,
 				02C91E861A2E092200B3977B /* Social.framework in Frameworks */,
@@ -148,6 +151,7 @@
 		1079FEE51A2D4AD800654080 = {
 			isa = PBXGroup;
 			children = (
+				1053D7D31A320C99006CB437 /* CoreData.framework */,
 				02C91E961A2E27ED00B3977B /* frameworks */,
 				1079FEF01A2D4AD900654080 /* socialCalendar */,
 				1079FF061A2D4AD900654080 /* socialCalendarTests */,
@@ -167,6 +171,7 @@
 		1079FEF01A2D4AD900654080 /* socialCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */,
 				02F9119A1A2E61EE00B15744 /* Kevin.storyboard */,
 				02F911971A2E604C00B15744 /* Miles.storyboard */,
 				1079FEF31A2D4AD900654080 /* AppDelegate.swift */,
@@ -190,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				1079FEF21A2D4AD900654080 /* Info.plist */,
-				1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

@@ -7,18 +7,24 @@
 //
 
 import UIKit
+import CoreData
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
 
     let friendManager = FriendManager.sharedFriendManager
     
     var filteredFriends : [Friend]?
+    var sortedFriends = [Friend]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        // self-sizing table view cells
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -27,7 +33,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        fetchFriends();
+        
+        // might need this here but not if we reload data somewhere else
+//        tableView.reloadData()
         
     }
     
@@ -54,7 +63,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
             }
             
         } else {
-            return friendManager.friends.count
+            print(sortedFriends.count)
+            return sortedFriends.count
         }
     }
     
@@ -65,13 +75,13 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         
         if tableView == searchDisplayController!.searchResultsTableView {
             
-            friend = filteredFriends![indexPath.row]
+            friend = filteredFriends![indexPath.row] as Friend
         }
         else {
-            friend = friendManager.friends[indexPath.row]
+            friend = sortedFriends[indexPath.row] as Friend
         }
         
-        cell.usernameLabel?.text = friend.username
+        cell.usernameLabel.text = friend.username
         cell.userImage?.image = friend.image
 
         return cell
@@ -91,12 +101,20 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            let managedObjectContext = AppDelegate.sharedAppDelegate.managedObjectContext!
+            managedObjectContext.deleteObject(sortedFriends[indexPath.row])
+            sortedFriends.removeAtIndex(indexPath.row)
             
             friendManager.friends.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            AppDelegate.sharedAppDelegate.saveContext()
             
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return NO if you do not want the specified item to be editable.
+        return true
     }
     
     
@@ -150,6 +168,21 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         filteredFriends = friendManager.filteredRemindersForSearchText(searchString)
         
         return true
+    }
+    
+    //Mark: - Core Data
+    
+    func fetchFriends() {
+        let managedObjectContext = AppDelegate.sharedAppDelegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName: "Friend")
+        
+        let sortDescriptor = NSSortDescriptor(key: "userName", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: nil) as [Friend]
+        
+        sortedFriends = fetchedResults
     }
 
 }
