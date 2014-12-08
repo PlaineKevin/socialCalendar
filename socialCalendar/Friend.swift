@@ -12,7 +12,7 @@ import CoreData
 
 class Friend: NSManagedObject {
     
-    @NSManaged var username: String
+    @NSManaged var userName: String
     @NSManaged var realName: String?
     @NSManaged var image: UIImage?
     

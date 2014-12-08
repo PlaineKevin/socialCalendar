@@ -27,7 +27,7 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         
         if let initialFriend = self.friend {
             imageView.image = initialFriend.image
-            usernameTextField.text = initialFriend.username
+            usernameTextField.text = initialFriend.userName
             realNameTextField.text = initialFriend.realName
         }
     }
@@ -39,7 +39,7 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
 
     
     @IBAction func handleImageTap(sender: UITapGestureRecognizer) {
-        print("i'm here");
+
         if UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum) {
             
             var imagePicker = UIImagePickerController()
@@ -68,7 +68,7 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
 //            FriendManager.sharedFriendManager.friends.append(friend)
         }
         else {
-            friend.username = usernameTextField.text
+            friend.userName = usernameTextField.text
             friend.realName = realNameTextField.text
             friend.image = imageView.image
             AppDelegate.sharedAppDelegate.saveContext()

@@ -31,7 +31,7 @@ class FriendDetailsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         imageView.image = friend.image
-        userNameDetails.text = friend.username
+        userNameDetails.text = friend.userName
         realNameDetails.text = friend.realName
 
     }

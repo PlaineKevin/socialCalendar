@@ -23,7 +23,7 @@ class FriendManager {
     func filteredRemindersForSearchText(searchText: String) -> [Friend] {
         
         let filteredReminders = friends.filter { (friend: Friend) -> Bool in
-            let stringMatch = friend.username.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+            let stringMatch = friend.userName.rangeOfString(searchText, options: .CaseInsensitiveSearch)
             
             return stringMatch != nil
         }

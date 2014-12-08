@@ -36,7 +36,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         fetchFriends();
         
         // might need this here but not if we reload data somewhere else
-//        tableView.reloadData()
+        tableView.reloadData()
         
     }
     
@@ -46,10 +46,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     }
     
     // MARK: - Table view data source
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -78,10 +74,11 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
             friend = filteredFriends![indexPath.row] as Friend
         }
         else {
+            let temp = sortedFriends.first!
             friend = sortedFriends[indexPath.row] as Friend
         }
         
-        cell.usernameLabel.text = friend.username
+        cell.usernameLabel.text = friend.userName
         cell.userImage?.image = friend.image
 
         return cell
