@@ -111,7 +111,7 @@
         <!--Calendar-->
         <scene sceneID="6TN-Od-yOZ">
             <objects>
-                <viewController id="BgT-QV-L5c" sceneMemberID="viewController">
+                <viewController id="BgT-QV-L5c" customClass="CalendarViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zNb-dX-rAF"/>
                         <viewControllerLayoutGuide type="bottom" id="qk3-6L-HHP"/>

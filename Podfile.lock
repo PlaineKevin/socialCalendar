@@ -1,10 +1,16 @@
 PODS:
-  - TimesSquare (1.0.1)
+  - Bolts (1.1.3)
+  - JTCalendar (1.1.8)
+  - Parse (1.6.0):
+    - Bolts (~> 1.1.3)
 
 DEPENDENCIES:
-  - TimesSquare
+  - JTCalendar (~> 1.1)
+  - Parse
 
 SPEC CHECKSUMS:
-  TimesSquare: 0cc058ccac868ec2da317950a0a6c70210edb85a
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  JTCalendar: 705b2f3f64a9ef8845b1165dc61064cca723f12c
+  Parse: f15dfacd941ee8084a5decbef486da8b223c2810
 
 COCOAPODS: 0.35.0

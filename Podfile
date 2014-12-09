@@ -1,2 +1,3 @@
-platform :ios, '8.1'
-pod 'TimesSquare'
+platform :ios, '8.0'
+pod 'JTCalendar', '~> 1.1'
+pod 'Parse'
