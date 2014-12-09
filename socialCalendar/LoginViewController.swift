@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
             user.signUpInBackgroundWithBlock {
                 success, error in
                 if success {
-                    performSegueWithIdentifier("login", sender: self)
+                    self.performSegueWithIdentifier("login", sender: self)
                 } else {
                     var errorPopup = UIAlertController(title: "An error occurred while registering", message: error.localizedDescription, preferredStyle: .Alert)
                     var okayActionInner = UIAlertAction(title: "Okay", style: .Default, handler: nil)
