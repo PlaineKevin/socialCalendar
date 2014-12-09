@@ -126,11 +126,23 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O0R-Tb-51m" customClass="JTCalendarContentView">
+                                <rect key="frame" x="0.0" y="235" width="320" height="284"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9k-pN-ww2" customClass="JTCalendarMenuView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="171"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calendar" id="XUT-DO-GDc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="contentView" destination="O0R-Tb-51m" id="cOZ-op-Uqv"/>
+                        <outlet property="menuView" destination="H9k-pN-ww2" id="45y-cY-vBx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Swe-LG-JTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,25 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023F93811A3799C500F0C33E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F93801A3799C500F0C33E /* CalendarViewController.swift */; };
+		023F93841A379ACD00F0C33E /* FriendDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F93831A379ACD00F0C33E /* FriendDetailsTableViewController.swift */; };
 		024A45BB1A33AB0900757D93 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A45BA1A33AB0900757D93 /* CalendarTableViewController.swift */; };
 		024A45BD1A33AB1C00757D93 /* CalendarTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A45BC1A33AB1C00757D93 /* CalendarTabBarViewController.swift */; };
 		025122511A3782CB00F3900A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 025122501A3782CB00F3900A /* Main.storyboard */; };
-		025122531A378D8700F3900A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025122521A378D8700F3900A /* CalendarViewController.swift */; };
 		02C91E981A2E288700B3977B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C91E971A2E288700B3977B /* LoginViewController.swift */; };
 		02F911991A2E604C00B15744 /* Miles.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F911971A2E604C00B15744 /* Miles.storyboard */; };
 		02F9119C1A2E61EE00B15744 /* Kevin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F9119A1A2E61EE00B15744 /* Kevin.storyboard */; };
 		103679601A2E3124001D63D2 /* friends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */; };
 		1079FEF41A2D4AD900654080 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FEF31A2D4AD900654080 /* AppDelegate.swift */; };
-		1079FEF61A2D4AD900654080 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FEF51A2D4AD900654080 /* ViewController.swift */; };
 		1079FEFB1A2D4AD900654080 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1079FEFA1A2D4AD900654080 /* Images.xcassets */; };
 		1079FEFE1A2D4AD900654080 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1079FEFC1A2D4AD900654080 /* LaunchScreen.xib */; };
 		1079FF0A1A2D4AD900654080 /* socialCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FF091A2D4AD900654080 /* socialCalendarTests.swift */; };
 		10F2D1321A2E29C300DDD58D /* EditFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D1311A2E29C300DDD58D /* EditFriendsTableViewController.swift */; };
-		10F2D1341A2E2A9600DDD58D /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D1331A2E2A9600DDD58D /* FriendsTableViewController.swift */; };
 		10F2D1361A2E2AB000DDD58D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D1351A2E2AB000DDD58D /* Friend.swift */; };
 		10F2D1381A2E2ABD00DDD58D /* FriendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D1371A2E2ABD00DDD58D /* FriendManager.swift */; };
-		10F2D13C1A2E2AFA00DDD58D /* FriendDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D13B1A2E2AFA00DDD58D /* FriendDetailsTableViewController.swift */; };
-		10F2D13E1A2E2B3400DDD58D /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D13D1A2E2B3400DDD58D /* FriendTableViewCell.swift */; };
 		8CB4C85692005374677C64B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D6155E0F6EE903B4D269A87 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -40,10 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		023F93801A3799C500F0C33E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		023F93831A379ACD00F0C33E /* FriendDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsTableViewController.swift; sourceTree = "<group>"; };
 		024A45BA1A33AB0900757D93 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
 		024A45BC1A33AB1C00757D93 /* CalendarTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTabBarViewController.swift; sourceTree = "<group>"; };
 		025122501A3782CB00F3900A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		025122521A378D8700F3900A /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		025122581A37953000F3900A /* socialCalendar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "socialCalendar-Bridging-Header.h"; sourceTree = "<group>"; };
 		02C91E971A2E288700B3977B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		02F911981A2E604C00B15744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Miles.storyboard; sourceTree = "<group>"; };
 		02F9119B1A2E61EE00B15744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Kevin.storyboard; sourceTree = "<group>"; };
@@ -51,7 +51,6 @@
 		1079FEEE1A2D4AD900654080 /* socialCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079FEF21A2D4AD900654080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079FEF31A2D4AD900654080 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1079FEF51A2D4AD900654080 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1079FEFA1A2D4AD900654080 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1079FEFD1A2D4AD900654080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1079FF031A2D4AD900654080 /* socialCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = socialCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +60,6 @@
 		10F2D1331A2E2A9600DDD58D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		10F2D1351A2E2AB000DDD58D /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		10F2D1371A2E2ABD00DDD58D /* FriendManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendManager.swift; sourceTree = "<group>"; };
-		10F2D13B1A2E2AFA00DDD58D /* FriendDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendDetailsTableViewController.swift; path = ../FriendDetailsTableViewController.swift; sourceTree = "<group>"; };
 		10F2D13D1A2E2B3400DDD58D /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		6D6155E0F6EE903B4D269A87 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C23CA8AA760EB67B6651EA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +97,7 @@
 		1079FEE51A2D4AD800654080 = {
 			isa = PBXGroup;
 			children = (
+				025122581A37953000F3900A /* socialCalendar-Bridging-Header.h */,
 				1079FEF01A2D4AD900654080 /* socialCalendar */,
 				1079FF061A2D4AD900654080 /* socialCalendarTests */,
 				1079FEEF1A2D4AD900654080 /* Products */,
@@ -125,11 +124,11 @@
 				02F911971A2E604C00B15744 /* Miles.storyboard */,
 				024A45BA1A33AB0900757D93 /* CalendarTableViewController.swift */,
 				024A45BC1A33AB1C00757D93 /* CalendarTabBarViewController.swift */,
+				023F93801A3799C500F0C33E /* CalendarViewController.swift */,
 				1079FEF31A2D4AD900654080 /* AppDelegate.swift */,
-				1079FEF51A2D4AD900654080 /* ViewController.swift */,
 				02C91E971A2E288700B3977B /* LoginViewController.swift */,
+				023F93831A379ACD00F0C33E /* FriendDetailsTableViewController.swift */,
 				10F2D13F1A2E2B9200DDD58D /* friends */,
-				10F2D13B1A2E2AFA00DDD58D /* FriendDetailsTableViewController.swift */,
 				10F2D13D1A2E2B3400DDD58D /* FriendTableViewCell.swift */,
 				10F2D1311A2E29C300DDD58D /* EditFriendsTableViewController.swift */,
 				10F2D1331A2E2A9600DDD58D /* FriendsTableViewController.swift */,
@@ -320,18 +319,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				023F93841A379ACD00F0C33E /* FriendDetailsTableViewController.swift in Sources */,
 				02C91E981A2E288700B3977B /* LoginViewController.swift in Sources */,
-				1079FEF61A2D4AD900654080 /* ViewController.swift in Sources */,
-				10F2D1381A2E2ABD00DDD58D /* FriendManager.swift in Sources */,
 				1079FEF41A2D4AD900654080 /* AppDelegate.swift in Sources */,
 				103679601A2E3124001D63D2 /* friends.xcdatamodeld in Sources */,
+				10F2D1381A2E2ABD00DDD58D /* FriendManager.swift in Sources */,
 				10F2D1361A2E2AB000DDD58D /* Friend.swift in Sources */,
-				024A45BD1A33AB1C00757D93 /* CalendarTabBarViewController.swift in Sources */,
-				10F2D1341A2E2A9600DDD58D /* FriendsTableViewController.swift in Sources */,
-				025122531A378D8700F3900A /* CalendarViewController.swift in Sources */,
 				10F2D1321A2E29C300DDD58D /* EditFriendsTableViewController.swift in Sources */,
-				10F2D13C1A2E2AFA00DDD58D /* FriendDetailsTableViewController.swift in Sources */,
-				10F2D13E1A2E2B3400DDD58D /* FriendTableViewCell.swift in Sources */,
+				024A45BD1A33AB1C00757D93 /* CalendarTabBarViewController.swift in Sources */,
+				023F93811A3799C500F0C33E /* CalendarViewController.swift in Sources */,
 				024A45BB1A33AB0900757D93 /* CalendarTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
