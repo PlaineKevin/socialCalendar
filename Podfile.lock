@@ -1,0 +1,10 @@
+PODS:
+  - TimesSquare (1.0.1)
+
+DEPENDENCIES:
+  - TimesSquare
+
+SPEC CHECKSUMS:
+  TimesSquare: 0cc058ccac868ec2da317950a0a6c70210edb85a
+
+COCOAPODS: 0.35.0
