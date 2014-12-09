@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
 
     @IBAction func loginVerifyButton(sender: AnyObject) {
+
         var username = usernameTextField.text
         var password = passwordTextField.text
 
@@ -119,8 +120,8 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "login" {
             let vc = segue.destinationViewController as CalendarTabBarViewController
-            vc.navigationController?.navigationItem.hidesBackButton = true
-            vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logout")
+            vc.navigationItem.hidesBackButton = true
+            vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logout")
             vc.navigationItem.title = "Logged in as " + PFUser.currentUser().username
         }
     }
