@@ -122,7 +122,7 @@ class LoginViewController: UIViewController {
             let vc = segue.destinationViewController as CalendarTabBarViewController
             vc.navigationItem.hidesBackButton = true
             vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logout")
-            vc.navigationItem.title = "Logged in as " + PFUser.currentUser().username
+            vc.navigationItem.title = PFUser.currentUser().username + "'s events"
         }
     }
 

@@ -13,9 +13,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
 
     let friendManager = FriendManager.sharedFriendManager
     
-    var filteredFriends : [Friend]?
+    var filteredFriends: [Friend]?
     var sortedFriends = [Friend]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +27,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -84,16 +84,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         return cell
     }
     
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
-    // Return NO if you do not want the specified item to be editable.
-    return true
-    }
-    */
-    
-    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -111,9 +101,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    
-    
-    
+
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
         
