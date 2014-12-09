@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
             loginUser()
             var currentUser = PFUser.currentUser()
             if currentUser != nil {
-                presentTabBarViewController()
+                performSegueWithIdentifier("login", sender: self)
             }
         } else {
             var errorPopup = UIAlertController(title: "Please enter a username and password.", message: nil, preferredStyle: .Alert)
@@ -80,10 +80,8 @@ class LoginViewController: UIViewController {
 
             user.signUpInBackgroundWithBlock {
                 success, error in
-                // TODO
-                // change if we modify class of the tab bar controller
                 if success {
-                    self.presentTabBarViewController()
+                    performSegueWithIdentifier("login", sender: self)
                 } else {
                     var errorPopup = UIAlertController(title: "An error occurred while registering", message: error.localizedDescription, preferredStyle: .Alert)
                     var okayActionInner = UIAlertAction(title: "Okay", style: .Default, handler: nil)
@@ -97,20 +95,23 @@ class LoginViewController: UIViewController {
         presentViewController(signupPopup, animated: true, completion: nil)
     }
 
-    func presentTabBarViewController() {
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarController") as UITabBarController
-        self.navigationController?.pushViewController(vc, animated: true)
+    func logout() {
+        PFUser.logOut()
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         var currentUser = PFUser.currentUser()
         if currentUser != nil {
             // cached user logged in
-            presentTabBarViewController()
+            performSegueWithIdentifier("login", sender: self)
         }
     }
 
@@ -120,14 +121,27 @@ class LoginViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "login" {
+            let vc = segue.destinationViewController as CalendarTabBarViewController
+            vc.navigationController?.navigationItem.backBarButtonItem = nil
+            vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logout")
+            vc.navigationItem.title = "Logged in as " + PFUser.currentUser().username
+        }
     }
-    */
+
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        // if no one is logged in, don't perform segue
+        if identifier == "login" && PFUser.currentUser() == nil {
+            return false
+        }
+
+        return true
+    }
 
 }

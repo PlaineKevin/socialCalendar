@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024A45BB1A33AB0900757D93 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A45BA1A33AB0900757D93 /* CalendarTableViewController.swift */; };
+		024A45BD1A33AB1C00757D93 /* CalendarTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A45BC1A33AB1C00757D93 /* CalendarTabBarViewController.swift */; };
 		02C91E741A2E08E100B3977B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C91E731A2E08E100B3977B /* Accounts.framework */; };
 		02C91E761A2E08E500B3977B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C91E751A2E08E500B3977B /* AudioToolbox.framework */; };
 		02C91E781A2E08ED00B3977B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C91E771A2E08EC00B3977B /* CFNetwork.framework */; };
@@ -51,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		024A45BA1A33AB0900757D93 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
+		024A45BC1A33AB1C00757D93 /* CalendarTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTabBarViewController.swift; sourceTree = "<group>"; };
 		02C91E731A2E08E100B3977B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		02C91E751A2E08E500B3977B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		02C91E771A2E08EC00B3977B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -169,6 +173,8 @@
 			children = (
 				02F9119A1A2E61EE00B15744 /* Kevin.storyboard */,
 				02F911971A2E604C00B15744 /* Miles.storyboard */,
+				024A45BA1A33AB0900757D93 /* CalendarTableViewController.swift */,
+				024A45BC1A33AB1C00757D93 /* CalendarTabBarViewController.swift */,
 				1079FEF31A2D4AD900654080 /* AppDelegate.swift */,
 				1079FEF51A2D4AD900654080 /* ViewController.swift */,
 				02C91E971A2E288700B3977B /* LoginViewController.swift */,
@@ -326,10 +332,12 @@
 				1079FEF41A2D4AD900654080 /* AppDelegate.swift in Sources */,
 				103679601A2E3124001D63D2 /* friends.xcdatamodeld in Sources */,
 				10F2D1361A2E2AB000DDD58D /* Friend.swift in Sources */,
+				024A45BD1A33AB1C00757D93 /* CalendarTabBarViewController.swift in Sources */,
 				10F2D1341A2E2A9600DDD58D /* FriendsTableViewController.swift in Sources */,
 				10F2D1321A2E29C300DDD58D /* EditFriendsTableViewController.swift in Sources */,
 				10F2D13C1A2E2AFA00DDD58D /* FriendDetailsTableViewController.swift in Sources */,
 				10F2D13E1A2E2B3400DDD58D /* FriendTableViewCell.swift in Sources */,
+				024A45BB1A33AB0900757D93 /* CalendarTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
