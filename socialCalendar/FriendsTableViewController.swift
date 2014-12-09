@@ -101,8 +101,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
             let managedObjectContext = AppDelegate.sharedAppDelegate.managedObjectContext!
             managedObjectContext.deleteObject(sortedFriends[indexPath.row])
             sortedFriends.removeAtIndex(indexPath.row)
-            
-            friendManager.friends.removeAtIndex(indexPath.row)
             AppDelegate.sharedAppDelegate.saveContext()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -119,9 +117,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
         
-        let friendToMove = friendManager.friends[fromIndexPath.row]
-        friendManager.friends.removeAtIndex(fromIndexPath.row)
-        friendManager.friends.insert(friendToMove, atIndex: toIndexPath.row)
+        let friendToMove = sortedFriends[fromIndexPath.row]
+        sortedFriends.removeAtIndex(fromIndexPath.row)
+        sortedFriends.insert(friendToMove, atIndex: toIndexPath.row)
     }
     
     
@@ -153,8 +151,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
                 }
                 
             } else {
-                
-                let friend = friendManager.friends[tableView.indexPathForSelectedRow()!.row]
+                let friend = sortedFriends[tableView.indexPathForSelectedRow()!.row]
                 destinationViewController.friend = friend
             }
         }

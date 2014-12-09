@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		025122511A3782CB00F3900A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 025122501A3782CB00F3900A /* Main.storyboard */; };
 		02C91E741A2E08E100B3977B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C91E731A2E08E100B3977B /* Accounts.framework */; };
 		02C91E761A2E08E500B3977B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C91E751A2E08E500B3977B /* AudioToolbox.framework */; };
 		02C91E781A2E08ED00B3977B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C91E771A2E08EC00B3977B /* CFNetwork.framework */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		025122501A3782CB00F3900A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		02C91E731A2E08E100B3977B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		02C91E751A2E08E500B3977B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		02C91E771A2E08EC00B3977B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -171,6 +173,7 @@
 		1079FEF01A2D4AD900654080 /* socialCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				025122501A3782CB00F3900A /* Main.storyboard */,
 				1036795E1A2E3124001D63D2 /* friends.xcdatamodeld */,
 				02F9119A1A2E61EE00B15744 /* Kevin.storyboard */,
 				02F911971A2E604C00B15744 /* Miles.storyboard */,
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F9119C1A2E61EE00B15744 /* Kevin.storyboard in Resources */,
+				025122511A3782CB00F3900A /* Main.storyboard in Resources */,
 				02F911991A2E604C00B15744 /* Miles.storyboard in Resources */,
 				1079FEFE1A2D4AD900654080 /* LaunchScreen.xib in Resources */,
 				1079FEFB1A2D4AD900654080 /* Images.xcassets in Resources */,
