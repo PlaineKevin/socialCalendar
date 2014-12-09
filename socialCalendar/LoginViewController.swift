@@ -20,10 +20,6 @@ class LoginViewController: UIViewController {
 
         if username != "" && password != "" {
             loginUser()
-            var currentUser = PFUser.currentUser()
-            if currentUser != nil {
-                performSegueWithIdentifier("login", sender: self)
-            }
         } else {
             var errorPopup = UIAlertController(title: "Please enter a username and password.", message: nil, preferredStyle: .Alert)
             var okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
@@ -40,7 +36,7 @@ class LoginViewController: UIViewController {
         PFUser.logInWithUsernameInBackground(usernameTextField.text, password: passwordTextField.text) {
             user, error in
             if user != nil {
-                print("logged in")
+                self.performSegueWithIdentifier("login", sender: self)
             } else {
                 var errorPopup = UIAlertController(title: "Login failed.", message: error.localizedDescription, preferredStyle: .Alert)
                 var okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
@@ -81,7 +77,7 @@ class LoginViewController: UIViewController {
             user.signUpInBackgroundWithBlock {
                 success, error in
                 if success {
-                    self.performSegueWithIdentifier("login", sender: self)
+                    self.performSegueWithIdentifier("login", sender: self.navigationController)
                 } else {
                     var errorPopup = UIAlertController(title: "An error occurred while registering", message: error.localizedDescription, preferredStyle: .Alert)
                     var okayActionInner = UIAlertAction(title: "Okay", style: .Default, handler: nil)
@@ -102,24 +98,18 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         var currentUser = PFUser.currentUser()
         if currentUser != nil {
             // cached user logged in
             performSegueWithIdentifier("login", sender: self)
         }
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     // MARK: - Navigation
 
@@ -129,7 +119,7 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "login" {
             let vc = segue.destinationViewController as CalendarTabBarViewController
-            vc.navigationController?.navigationItem.backBarButtonItem = nil
+            vc.navigationController?.navigationItem.hidesBackButton = true
             vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logout")
             vc.navigationItem.title = "Logged in as " + PFUser.currentUser().username
         }
