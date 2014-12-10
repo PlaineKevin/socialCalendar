@@ -92,19 +92,18 @@ class LoginViewController: UIViewController {
         presentViewController(signupPopup, animated: true, completion: nil)
     }
 
-    func logout() {
-        PFUser.logOut()
-        self.navigationController?.popToRootViewControllerAnimated(true)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         var currentUser = PFUser.currentUser()
         if currentUser != nil {
             // cached user logged in
             performSegueWithIdentifier("login", sender: self)
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,9 +118,8 @@ class LoginViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "login" {
-            let vc = segue.destinationViewController as CalendarTabBarViewController
+            let vc = (segue.destinationViewController as CalendarTabBarViewController)
             vc.navigationItem.hidesBackButton = true
-            vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logout")
             vc.navigationItem.title = PFUser.currentUser().username + "'s events"
         }
     }

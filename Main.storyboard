@@ -423,7 +423,7 @@
         <!--Friends List-->
         <scene sceneID="85M-Kx-tud">
             <objects>
-                <navigationController id="O3R-bQ-m1L" sceneMemberID="viewController">
+                <navigationController id="O3R-bQ-m1L" customClass="SocialCalendarViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends List" id="6l3-MD-xhe"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lei-8j-5Ne">
