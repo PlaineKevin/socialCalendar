@@ -27,9 +27,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItems?.insert(self.editButtonItem(), atIndex: 1)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -59,7 +59,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
             }
             
         } else {
-            print(sortedFriends.count)
             return sortedFriends.count
         }
     }

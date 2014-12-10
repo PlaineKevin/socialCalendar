@@ -36,8 +36,6 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-
-    
     @IBAction func handleImageTap(sender: UITapGestureRecognizer) {
 
         if UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum) {
