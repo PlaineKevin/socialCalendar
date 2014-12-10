@@ -16,7 +16,6 @@ class FriendTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        userImage.layer.masksToBounds = true
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -28,7 +27,6 @@ class FriendTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        userImage.layer.cornerRadius = userImage.bounds.width / 2.0
     }
 
 }

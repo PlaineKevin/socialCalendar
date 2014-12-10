@@ -19,8 +19,8 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
 
     func calendarHaveEvent(calendar: JTCalendar!, date: NSDate!) -> Bool {
         var key = dateFormatter.stringFromDate(date)
-        var events = eventsByDate[key] as NSArray
-        if events.count > 0 {
+        var events = eventsByDate[key] as NSArray?
+        if events != nil && events?.count > 0 {
             return true
         }
         return false
@@ -28,8 +28,7 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
 
     func calendarDidDateSelected(calendar: JTCalendar!, date: NSDate!) {
         var key = dateFormatter.stringFromDate(date)
-        var events = eventsByDate[key] as NSArray
-        print("Date: \(date), events: \(events.count)\n")
+        var events = eventsByDate[key] as NSArray?
     }
 
     func randomizeEvents() {
