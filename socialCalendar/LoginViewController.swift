@@ -97,6 +97,10 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         var currentUser = PFUser.currentUser()

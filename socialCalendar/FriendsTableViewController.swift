@@ -76,8 +76,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
             let temp = sortedFriends.first!
             friend = sortedFriends[indexPath.row] as Friend
         }
-        
+
         cell.usernameLabel.text = friend.userName
+        cell.realnameLabel.text = friend.realName
         cell.userImage?.image = friend.image
 
         return cell
