@@ -21,10 +21,15 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
     
     @IBOutlet weak var imageView: UIImageView!
     
-    
+
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as UITableViewHeaderFooterView
+//        headerView.textLabel.
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let initialFriend = self.friend {
             imageView.image = initialFriend.image
             usernameTextField.text = initialFriend.userName
