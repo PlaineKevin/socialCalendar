@@ -97,6 +97,23 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         AppDelegate.sharedAppDelegate.saveContext()
     }
     
+    // MARK: - Parse
+
+    func createFriendInParse(username: String, realName: String?, image: UIImage?) {
+        var addedFriend = PFObject(className: "Friend")
+        addedFriend.setObject(username, forKey: "username")
+        addedFriend.setObject(realName, forKey: "realName")
+        addedFriend.setObject(image, forKey: "image")
+        addedFriend.saveInBackgroundWithBlock {
+            (success: Bool!, error: NSError!) -> Void in
+        if success {
+            print("Object created")
+        } else {
+            print(error)
+        }}
+        
+    }
+    
 
     
 
