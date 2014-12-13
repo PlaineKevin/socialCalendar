@@ -31,7 +31,15 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         super.viewDidLoad()
 
         if let initialFriend = self.friend {
-//            imageView.image = initialFriend.image
+            let imageObject = friend["image"] as PFFile
+            imageObject.getDataInBackgroundWithBlock({
+                (imageData: NSData!, error: NSError!) -> Void in
+                if error == nil {
+                    let image = UIImage(data: imageData)
+                    self.imageView.image = image
+                }
+                
+            })
             usernameTextField.text = initialFriend["username"] as String
             realNameTextField.text = initialFriend["realName"] as String?
         }
@@ -137,6 +145,9 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
                             query.getObjectInBackgroundWithId(object.objectId, block: {
                                 (user: PFObject!, error: NSError!) -> Void in
                                 user["realName"] = realName
+                                let imageData = UIImagePNGRepresentation(image)
+                                let imageFile: PFFile = PFFile(data: imageData)
+                                user["image"] = imageFile
                                 user.saveInBackgroundWithBlock(nil)
                             })
                         }

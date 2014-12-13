@@ -31,6 +31,15 @@ class FriendDetailsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
 //        imageView.image = friend.image
+        let imageObject = friend["image"] as PFFile
+        imageObject.getDataInBackgroundWithBlock({
+            (imageData: NSData!, error: NSError!) -> Void in
+            if error == nil {
+                let image = UIImage(data: imageData)
+                self.imageView.image = image
+            }
+            
+        })
         userNameDetails.text = friend["username"] as String
         realNameDetails.text = friend["realName"] as String?
 
