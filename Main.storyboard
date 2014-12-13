@@ -111,11 +111,56 @@
                     <connections>
                         <segue destination="O3R-bQ-m1L" kind="relationship" relationship="viewControllers" id="Hv7-jT-ImJ"/>
                         <segue destination="BgT-QV-L5c" kind="relationship" relationship="viewControllers" id="wX4-K0-q5S"/>
+                        <segue destination="Ooc-nf-ozZ" kind="relationship" relationship="viewControllers" id="Nj2-GL-XfZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2u-nq-MWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="82" y="212"/>
+        </scene>
+        <!--Events-->
+        <scene sceneID="vOn-so-Bba">
+            <objects>
+                <tableViewController id="th3-Ye-RDQ" customClass="EventsTableViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="jnY-S0-cLH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fqy-lj-hpJ" customClass="EventTableViewCell" customModule="socialCalendar" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fqy-lj-hpJ" id="5fx-OU-lHu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="th3-Ye-RDQ" id="XgK-tA-2ma"/>
+                            <outlet property="delegate" destination="th3-Ye-RDQ" id="xRD-4r-vpq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Events" id="Ogt-92-uam"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n7O-bN-rde" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="898" y="212"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="IxW-Mk-xfA">
+            <objects>
+                <navigationController id="Ooc-nf-ozZ" customClass="SocialCalendarViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="HlR-GH-KCe"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G0K-CS-e1U">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="th3-Ye-RDQ" kind="relationship" relationship="rootViewController" id="Ua0-qz-dxN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n0t-jb-T9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="491" y="212"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="6TN-Od-yOZ">
