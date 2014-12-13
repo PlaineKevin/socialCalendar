@@ -24,7 +24,7 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
 
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as UITableViewHeaderFooterView
-//        headerView.textLabel.
+        // want to center text in the headers... how?
     }
 
     override func viewDidLoad() {
@@ -65,7 +65,6 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
     
     @IBAction func saveButtonTap(sender: AnyObject) {
         if friend == nil {
-            
             createFriendWithContent(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
             createFriendInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
 
@@ -78,7 +77,6 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
             AppDelegate.sharedAppDelegate.saveContext()
             
             updateFriendInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
-            
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -101,51 +99,41 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
     }
     
     // MARK: - Parse
-
     
-        func createFriendInParse(username: String, realName: String?, image: UIImage?) {
-            print("creating friend in parse")
-            var addedFriend = PFObject(className: "Friend")
-            addedFriend["username"] = username
-            addedFriend["realName"] = realName
-            if image != nil {
-                let imageData = UIImagePNGRepresentation(image)
-                let imageFile: PFFile = PFFile(data: imageData)
-                addedFriend["image"] = imageFile
-            } else {
-                var defaultImage = UIImage(named: "unknownPerson")
-                let defaultData = UIImagePNGRepresentation(defaultImage)
-                let defaultFile: PFFile = PFFile(data: defaultData)
-                addedFriend["image"] = defaultFile
-                
-            }
+    func createFriendInParse(username: String, realName: String?, image: UIImage?) {
+        print("creating friend in parse")
+        var addedFriend = PFObject(className: "Friend")
+        addedFriend["username"] = username
+        addedFriend["realName"] = realName
+        if image != nil {
+            let imageData = UIImagePNGRepresentation(image)
+            let imageFile: PFFile = PFFile(data: imageData)
+            addedFriend["image"] = imageFile
+        } else {
+            var defaultImage = UIImage(named: "unknownPerson")
+            let defaultData = UIImagePNGRepresentation(defaultImage)
+            let defaultFile: PFFile = PFFile(data: defaultData)
+            addedFriend["image"] = defaultFile
             
-    
-            addedFriend.saveInBackgroundWithBlock(nil)
-    
         }
-    
-        func updateFriendInParse(username: String, realName: String?, image: UIImage?) {
-            var query = PFQuery(className: "Friend")
+        addedFriend.saveInBackgroundWithBlock(nil)
+    }
+
+    func updateFriendInParse(username: String, realName: String?, image: UIImage?) {
+        var query = PFQuery(className: "Friend")
 ////            query.fromLocalDatastore()
+        query.findObjectsInBackgroundWithBlock({
+            (objects: [AnyObject]!, error: NSError!) -> Void in
             
-            
-            query.findObjectsInBackgroundWithBlock({
-                (objects: [AnyObject]!, error: NSError!) -> Void in
-                
-                for object in objects {
-                        if object["username"] as String == username {
-                            query.getObjectInBackgroundWithId(object.objectId, block: {
-                                (user: PFObject!, error: NSError!) -> Void in
-                                user["realName"] = realName
-                                user.saveInBackgroundWithBlock(nil)
-                            })
-                        }
+            for object in objects {
+                    if object["username"] as String == username {
+                        query.getObjectInBackgroundWithId(object.objectId, block: {
+                            (user: PFObject!, error: NSError!) -> Void in
+                            user["realName"] = realName
+                            user.saveInBackgroundWithBlock(nil)
+                        })
                     }
-            })
-        }
-
-
-    
-
+                }
+        })
+    }
 }
