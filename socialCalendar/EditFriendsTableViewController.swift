@@ -67,7 +67,8 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         if friend == nil {
             
             createFriendWithContent(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
-            
+            createFriendInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
+
 //            FriendManager.sharedFriendManager.friends.append(friend)
         }
         else {
@@ -75,6 +76,8 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
             friend.realName = realNameTextField.text
             friend.image = imageView.image
             AppDelegate.sharedAppDelegate.saveContext()
+            
+            updateFriendInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
             
         }
         
@@ -99,21 +102,49 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
     
     // MARK: - Parse
 
-    func createFriendInParse(username: String, realName: String?, image: UIImage?) {
-        var addedFriend = PFObject(className: "Friend")
-        addedFriend.setObject(username, forKey: "username")
-        addedFriend.setObject(realName, forKey: "realName")
-        addedFriend.setObject(image, forKey: "image")
-        addedFriend.saveInBackgroundWithBlock {
-            (success: Bool!, error: NSError!) -> Void in
-        if success {
-            print("Object created")
-        } else {
-            print(error)
-        }}
-        
-    }
     
+        func createFriendInParse(username: String, realName: String?, image: UIImage?) {
+            print("creating friend in parse")
+            var addedFriend = PFObject(className: "Friend")
+            addedFriend["username"] = username
+            addedFriend["realName"] = realName
+            if image != nil {
+                let imageData = UIImagePNGRepresentation(image)
+                let imageFile: PFFile = PFFile(data: imageData)
+                addedFriend["image"] = imageFile
+            } else {
+                var defaultImage = UIImage(named: "unknownPerson")
+                let defaultData = UIImagePNGRepresentation(defaultImage)
+                let defaultFile: PFFile = PFFile(data: defaultData)
+                addedFriend["image"] = defaultFile
+                
+            }
+            
+    
+            addedFriend.saveInBackgroundWithBlock(nil)
+    
+        }
+    
+        func updateFriendInParse(username: String, realName: String?, image: UIImage?) {
+            var query = PFQuery(className: "Friend")
+////            query.fromLocalDatastore()
+            
+            
+            query.findObjectsInBackgroundWithBlock({
+                (objects: [AnyObject]!, error: NSError!) -> Void in
+                
+                for object in objects {
+                        if object["username"] as String == username {
+                            query.getObjectInBackgroundWithId(object.objectId, block: {
+                                (user: PFObject!, error: NSError!) -> Void in
+                                user["realName"] = realName
+                                user.saveInBackgroundWithBlock(nil)
+                            })
+                        }
+                    }
+            })
+        }
+
 
     
 
