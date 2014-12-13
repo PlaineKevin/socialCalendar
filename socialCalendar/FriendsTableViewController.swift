@@ -204,14 +204,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
                 
                 if let selectedRow = searchDisplayController!.searchResultsTableView.indexPathForSelectedRow()?.row {
                     
-                    destinationViewController.friend = filteredFriends?[selectedRow]
+//                    destinationViewController.friend = filteredFriends?[selectedRow]
                 }
                 
             } else {
 //                let friend = sortedFriends[tableView.indexPathForSelectedRow()!.row]
                 let friend = friendsData[tableView.indexPathForSelectedRow()!.row]
                 
-//                destinationViewController.friend = friend
+                destinationViewController.friend = friend
             }
         }
     }

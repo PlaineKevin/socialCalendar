@@ -14,7 +14,7 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
     
     var friendList = FriendManager.sharedFriendManager.friends
     
-    var friend: Friend!
+    var friend: PFObject!
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var realNameTextField: UITextField!
@@ -31,9 +31,9 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         super.viewDidLoad()
 
         if let initialFriend = self.friend {
-            imageView.image = initialFriend.image
-            usernameTextField.text = initialFriend.userName
-            realNameTextField.text = initialFriend.realName
+//            imageView.image = initialFriend.image
+            usernameTextField.text = initialFriend["username"] as String
+            realNameTextField.text = initialFriend["realName"] as String?
         }
     }
 
@@ -66,16 +66,16 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
     @IBAction func saveButtonTap(sender: AnyObject) {
         if friend == nil {
             
-            createFriendWithContent(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
+//            createFriendWithContent(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
             createFriendInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
 
 //            FriendManager.sharedFriendManager.friends.append(friend)
         }
         else {
-            friend.userName = usernameTextField.text
-            friend.realName = realNameTextField.text
-            friend.image = imageView.image
-            AppDelegate.sharedAppDelegate.saveContext()
+//            friend.userName = usernameTextField.text
+//            friend.realName = realNameTextField.text
+//            friend.image = imageView.image
+//            AppDelegate.sharedAppDelegate.saveContext()
             
             updateFriendInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
             
@@ -104,7 +104,6 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
 
     
         func createFriendInParse(username: String, realName: String?, image: UIImage?) {
-            print("creating friend in parse")
             var addedFriend = PFObject(className: "Friend")
             addedFriend["username"] = username
             addedFriend["realName"] = realName
