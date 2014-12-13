@@ -14,7 +14,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     let friendManager = FriendManager.sharedFriendManager
     
     var filteredFriends: [Friend]?
-    var sortedFriends = [Friend]()
+//    var sortedFriends = [Friend]()
+    
+    var friendsData: NSMutableArray = NSMutableArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +35,34 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchFriends();
+//        fetchFriends();
+        self.loadData()
         
         // might need this here but not if we reload data somewhere else
-        tableView.reloadData()
+//        tableView.reloadData()
+        
+    }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        self.loadData()
+//    }
+    
+    func loadData() {
+        // avoid duplicating data
+        friendsData.removeAllObjects()
+        
+        var findAllFriends: PFQuery = PFQuery(className: "Friend")
+        findAllFriends.findObjectsInBackgroundWithBlock({
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+            var counter = 0
+            for object in objects {
+                println("\(counter)")
+                self.friendsData.addObject(object)
+                counter += 1
+            }
+        })
+        
+        self.tableView.reloadData()
         
     }
     
@@ -59,27 +85,37 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
             }
             
         } else {
-            return sortedFriends.count
+            println("\(friendsData.count)")
+            return friendsData.count
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as FriendTableViewCell
         
-        var friend: Friend
+        let friend: PFObject = self.friendsData[indexPath.row] as PFObject
         
-        if tableView == searchDisplayController!.searchResultsTableView {
-            
-            friend = filteredFriends![indexPath.row] as Friend
-        }
-        else {
-            let temp = sortedFriends.first!
-            friend = sortedFriends[indexPath.row] as Friend
-        }
-
-        cell.usernameLabel.text = friend.userName
-        cell.realnameLabel.text = friend.realName
-        cell.userImage?.image = friend.image
+        
+//        var friend: Friend
+//        
+//        if tableView == searchDisplayController!.searchResultsTableView {
+//            
+//            friend = filteredFriends![indexPath.row] as Friend
+//        }
+//        else {
+//            let temp = sortedFriends.first!
+//            friend = sortedFriends[indexPath.row] as Friend
+//        }
+//
+        cell.usernameLabel.text = friend.objectForKey("username") as String
+        cell.realnameLabel.text = friend.objectForKey("realName") as? String
+//        let imageFile = friend["image"] as PFFile
+//        imageFile.getDataInBackgroundWithBlock {
+//            (imageData: NSData!, error: NSError!) -> Void in
+//            
+//            let image = UIImage(data:imageData)
+//            cell.userImage?.image = image
+//        }
 
         return cell
     }
@@ -88,10 +124,13 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
-            let managedObjectContext = AppDelegate.sharedAppDelegate.managedObjectContext!
-            managedObjectContext.deleteObject(sortedFriends[indexPath.row])
-            sortedFriends.removeAtIndex(indexPath.row)
-            AppDelegate.sharedAppDelegate.saveContext()
+//            CoreData
+//            let managedObjectContext = AppDelegate.sharedAppDelegate.managedObjectContext!
+//            managedObjectContext.deleteObject(sortedFriends[indexPath.row])
+//            sortedFriends.removeAtIndex(indexPath.row)
+//            AppDelegate.sharedAppDelegate.saveContext()
+            
+            friendsData.removeObjectAtIndex(indexPath.row)
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
@@ -105,9 +144,18 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
         
-        let friendToMove = sortedFriends[fromIndexPath.row]
-        sortedFriends.removeAtIndex(fromIndexPath.row)
-        sortedFriends.insert(friendToMove, atIndex: toIndexPath.row)
+//        CoreData
+//        let friendToMove = sortedFriends[fromIndexPath.row]
+//        sortedFriends.removeAtIndex(fromIndexPath.row)
+//        sortedFriends.insert(friendToMove, atIndex: toIndexPath.row)
+        
+        let friendToMove: PFObject = friendsData[fromIndexPath.row] as PFObject
+        friendsData.removeObjectAtIndex(fromIndexPath.row)
+        friendsData.insertObject(friendToMove, atIndex: toIndexPath.row)
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
     
@@ -139,8 +187,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
                 }
                 
             } else {
-                let friend = sortedFriends[tableView.indexPathForSelectedRow()!.row]
-                destinationViewController.friend = friend
+//                let friend = sortedFriends[tableView.indexPathForSelectedRow()!.row]
+                let friend = friendsData[tableView.indexPathForSelectedRow()!.row]
+                
+//                destinationViewController.friend = friend
             }
         }
     }
@@ -164,7 +214,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         
         let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: nil) as [Friend]
         
-        sortedFriends = fetchedResults
+//        sortedFriends = fetchedResults
     }
 
 }
