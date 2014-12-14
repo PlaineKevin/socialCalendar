@@ -109,6 +109,7 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
         var addedFriend = PFObject(className: "Friend")
         addedFriend["username"] = username
         addedFriend["realName"] = realName
+        addedFriend["user"] = PFUser.currentUser()
         if image != nil {
             let imageData = UIImagePNGRepresentation(image)
             let imageFile: PFFile = PFFile(data: imageData)
