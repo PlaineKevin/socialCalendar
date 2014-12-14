@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.errorMessagesEnabled(true)
         Parse.setApplicationId("aT9n1CHI0uX8lRxWi4OWRLXZ6etXGw3QebXFZuqt", clientKey: "eGTFi656tRFn3zG5Sv9HPqB0ovP4AJrDLYcSAEYk")
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
-        
         return true
     }
     
