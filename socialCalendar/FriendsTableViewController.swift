@@ -54,7 +54,16 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         var addAllFriends: PFQuery = PFQuery(className: "Friend")
         addAllFriends.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) -> Void in
-            self.friendsData = objects as [PFObject]
+            
+            self.friendsData.removeAll(keepCapacity: false)
+            
+            for object in objects {
+                let user = object["user"] as PFUser
+                if user.objectId == PFUser.currentUser().objectId {
+                    self.friendsData.append(object as PFObject)
+                }
+            }
+            //            self.friendsData = objects as [PFObject]
             self.tableView.reloadData()
         })
 

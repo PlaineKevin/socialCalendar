@@ -47,10 +47,19 @@ class EventsTableViewController: UITableViewController {
     }
     
     func loadData() {
-        var addAllEvents: PFQuery = PFQuery(className: "Event")
-        addAllEvents.findObjectsInBackgroundWithBlock({
+        var addAllFriends: PFQuery = PFQuery(className: "Event")
+        addAllFriends.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) -> Void in
-            self.eventsData = objects as [PFObject]
+            
+            self.eventsData.removeAll(keepCapacity: false)
+            
+            for object in objects {
+                let event = object["user"] as PFUser
+                if event.objectId == PFUser.currentUser().objectId {
+                    self.eventsData.append(object as PFObject)
+                }
+            }
+            //            self.friendsData = objects as [PFObject]
             self.tableView.reloadData()
         })
         
