@@ -142,7 +142,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
         addedEvent["details"] = details
         addedEvent["editors"] = editors
         addedEvent["viewers"] = viewers
-        addedEvent["user"] = PFUser.currentUser()
+        addedEvent["user"] = PFUser.currentUser() as PFUser
         if image != nil {
             let imageData = UIImagePNGRepresentation(image)
             let imageFile: PFFile = PFFile(data: imageData)
