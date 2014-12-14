@@ -51,25 +51,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     }
     
     func loadData() {
-        // get rid of duplicates
-        
         var addAllFriends: PFQuery = PFQuery(className: "Friend")
         addAllFriends.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) -> Void in
-            var counter = 0
-            var subtracter = 0;
-            var friendsCount = self.friendsData.count
-            
-            for(subtracter; subtracter < friendsCount; subtracter++) {
-                self.friendsData.removeLast()
-            }
-            
-            for object in objects {
-                self.friendsData.append(object as PFObject)
-//                self.friendsData.insert(object as PFObject, atIndex: counter)
-                counter += 1
-            }
-            
+            self.friendsData = objects as [PFObject]
             self.tableView.reloadData()
         })
 
@@ -84,15 +69,13 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tableView == searchDisplayController!.searchResultsTableView
-        {
+        if tableView == searchDisplayController!.searchResultsTableView {
             if filteredFriends == nil {
                 return 0
             }
             else {
                 return filteredFriends!.count
             }
-            
         } else {
             return self.friendsData.count
         }
@@ -115,14 +98,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
 //            friend = sortedFriends[indexPath.row] as Friend
 //        }
 //
-        cell.usernameLabel.text = friend.objectForKey("username") as String
+        cell.usernameLabel.text = friend.objectForKey("username") as? String
         cell.realnameLabel.text = friend.objectForKey("realName") as? String
         
         let imageFile = friend["image"] as PFFile
         imageFile.getDataInBackgroundWithBlock {
             (imageData: NSData!, error: NSError!) -> Void in
             
-            let image = UIImage(data:imageData)
+            let image = UIImage(data: imageData)
             cell.userImage?.image = image
         }
 

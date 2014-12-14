@@ -41,7 +41,7 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
                 
             })
             usernameTextField.text = initialFriend["username"] as String
-            realNameTextField.text = initialFriend["realName"] as String?
+            realNameTextField.text = initialFriend["realName"] as String
         }
     }
 
@@ -86,8 +86,6 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
             
             updateFriendInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
         }
-        
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func createFriendWithContent(username: String, realName: String?, image: UIImage?) {
@@ -122,16 +120,26 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
             addedFriend["image"] = defaultFile
             
         }
-        addedFriend.saveInBackgroundWithBlock(nil)
+        addedFriend.saveInBackgroundWithBlock {
+            success, error in
+            if success && error == nil {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                var errorPopup = UIAlertController(title: "Saving friend failed.", message: error.localizedDescription, preferredStyle: .Alert)
+                var okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+                errorPopup.addAction(okayAction)
+                self.presentViewController(errorPopup, animated: true, completion: nil)
+            }
+        }
     }
 
     func updateFriendInParse(username: String, realName: String?, image: UIImage?) {
         var query = PFQuery(className: "Friend")
         // query.fromLocalDatastore()
         query.findObjectsInBackgroundWithBlock({
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+            (objects: [AnyObject]!, error: NSError!) in
             query.findObjectsInBackgroundWithBlock({
-                (objects: [AnyObject]!, error: NSError!) -> Void in
+                (objects: [AnyObject]!, error: NSError!) in
                 for object in objects {
                     if object["username"] as String == username {
                         query.getObjectInBackgroundWithId(object.objectId, block: {
