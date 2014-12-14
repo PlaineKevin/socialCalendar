@@ -148,7 +148,18 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
                             let imageData = UIImagePNGRepresentation(image)
                             let imageFile: PFFile = PFFile(data: imageData)
                             user["image"] = imageFile
-                            user.saveInBackgroundWithBlock(nil)
+                            
+                            user.saveInBackgroundWithBlock {
+                                success, error in
+                                if success && error == nil {
+                                    self.dismissViewControllerAnimated(true, completion: nil)
+                                } else {
+                                    var errorPopup = UIAlertController(title: "Updating friend failed.", message: error.localizedDescription, preferredStyle: .Alert)
+                                    var okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+                                    errorPopup.addAction(okayAction)
+                                    self.presentViewController(errorPopup, animated: true, completion: nil)
+                                }
+                            }
                         })
                     }
                 }

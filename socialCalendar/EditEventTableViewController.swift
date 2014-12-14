@@ -39,11 +39,12 @@ class EditEventTableViewController: UITableViewController {
         if event == nil {
             createEventInParse(eventName.text, eventDate.date, eventDetails, eventEditors, eventEditors, image)
         } else {
-            event.name = eventName.text
-            event.date = eventDate.date
-            event.image = eventImage
-            .image
-            AppDelegate.sharedAppDelegate.saveContext()
+//            CoreData 
+//            event.name = eventName.text
+//            event.date = eventDate.date
+//            event.image = eventImage
+//            .image
+//            AppDelegate.sharedAppDelegate.saveContext()
 
             updateEventInParse(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
         }
