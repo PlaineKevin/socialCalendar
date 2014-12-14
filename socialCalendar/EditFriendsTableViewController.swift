@@ -136,8 +136,8 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
     func updateFriendInParse(username: String, realName: String?, image: UIImage?) {
         var query = PFQuery(className: "Friend")
         // query.fromLocalDatastore()
-        query.findObjectsInBackgroundWithBlock({
-            (objects: [AnyObject]!, error: NSError!) in
+//        query.findObjectsInBackgroundWithBlock({
+//            (objects: [AnyObject]!, error: NSError!) in
             query.findObjectsInBackgroundWithBlock({
                 (objects: [AnyObject]!, error: NSError!) in
                 for object in objects {
@@ -164,6 +164,6 @@ class EditFriendsTableViewController: UITableViewController, UIImagePickerContro
                     }
                 }
             })
-        })
+//        })
     }
 }

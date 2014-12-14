@@ -169,6 +169,7 @@
                                     <outlet property="date" destination="Vdo-gb-Lsv" id="K68-lC-3It"/>
                                     <outlet property="name" destination="oHT-X8-6C9" id="Fxl-aX-A9p"/>
                                     <outlet property="participants" destination="DCr-6A-enz" id="u69-5c-hZ2"/>
+                                    <segue destination="sRS-ih-rds" kind="show" identifier="eventDetailSegue" trigger="accessoryAction" id="EEy-ee-nam"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -723,7 +724,9 @@
                                                         <constraint firstAttribute="width" constant="300" id="skj-aD-WLq"/>
                                                     </constraints>
                                                     <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="ujh-Cs-7aW" appends="YES" id="1Cn-vc-Oec"/>
                                                         <outletCollection property="gestureRecognizers" destination="ujh-Cs-7aW" appends="YES" id="cmH-en-uFn"/>
+                                                        <outletCollection property="gestureRecognizers" destination="ujh-Cs-7aW" appends="YES" id="PZg-kO-F3X"/>
                                                     </connections>
                                                 </imageView>
                                             </subviews>
@@ -731,6 +734,25 @@
                                                 <constraint firstAttribute="centerX" secondItem="dDY-mw-9Bt" secondAttribute="centerX" id="1QZ-pf-BX9"/>
                                                 <constraint firstAttribute="centerY" secondItem="dDY-mw-9Bt" secondAttribute="centerY" id="x4S-Z0-0JB"/>
                                             </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Event Details" id="578-XI-BmJ">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="194" id="Z6p-e9-JCJ">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z6p-e9-JCJ" id="Iz8-fN-KK7">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9p-IG-pry">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -747,6 +769,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="eventDate" destination="za5-8y-oSc" id="efQ-2Z-2rJ"/>
+                        <outlet property="eventDetails" destination="Z9p-IG-pry" id="XvE-NO-4MT"/>
                         <outlet property="eventEditors" destination="QZZ-p3-Osj" id="UiI-tQ-gCx"/>
                         <outlet property="eventImage" destination="dDY-mw-9Bt" id="j5K-UP-i86"/>
                         <outlet property="eventName" destination="bzb-fZ-Wwa" id="CKf-PD-EiW"/>
@@ -757,14 +780,118 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHc-pk-7N0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="ujh-Cs-7aW">
                     <connections>
-                        <action selector="friendImageViewTap:" destination="sfo-DW-gWY" id="SLP-Ye-Kho"/>
+                        <action selector="handleImageTap:" destination="sfo-DW-gWY" id="0Tb-TJ-LC9"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1367" y="-75"/>
         </scene>
+        <!--Information-->
+        <scene sceneID="CON-xC-m0f">
+            <objects>
+                <tableViewController id="sRS-ih-rds" customClass="EventDetailsTableViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yFS-pT-BG0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Name" id="ohx-cJ-yoh">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Kum-ZH-3kN" rowHeight="61" style="IBUITableViewCellStyleDefault" id="tSZ-Q8-gYG">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tSZ-Q8-gYG" id="zg5-p9-bfD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Event name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kum-ZH-3kN">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Participants" id="ecx-6Y-xLE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BsZ-St-7g8">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BsZ-St-7g8" id="eUY-5V-4v9">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4gM-ET-go9">
+                                                    <rect key="frame" x="0.0" y="6" width="320" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Event details" id="faA-1L-Rat">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="147" id="bSi-5d-RbU">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSi-5d-RbU" id="f56-xI-Zyk">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0J4-92-C5V">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-4" id="KUy-VV-T7h">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="148" id="XM6-5T-eRx">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XM6-5T-eRx" id="FNE-ZC-nAr">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HgQ-xS-fXN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="sRS-ih-rds" id="3ig-qk-PB9"/>
+                            <outlet property="delegate" destination="sRS-ih-rds" id="tb8-a5-Hxb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Information" id="Kvg-J8-A7w">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="XNt-jx-Blz">
+                            <connections>
+                                <segue destination="sfo-DW-gWY" kind="presentation" identifier="editEventSegue" id="VAy-hd-ZqW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="details" destination="0J4-92-C5V" id="13c-IL-0aa"/>
+                        <outlet property="eventName" destination="Kum-ZH-3kN" id="6Fu-K1-6sA"/>
+                        <outlet property="imageView" destination="HgQ-xS-fXN" id="vt5-DP-p9Z"/>
+                        <outlet property="participants" destination="4gM-ET-go9" id="Q6X-za-GWo"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oi2-R4-L63" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1886" y="212"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gIy-FW-2Ix"/>
+        <segue reference="kFf-pi-hq8"/>
+        <segue reference="vRz-eq-qGD"/>
     </inferredMetricsTieBreakers>
 </document>
