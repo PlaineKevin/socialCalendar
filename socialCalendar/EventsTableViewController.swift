@@ -47,8 +47,8 @@ class EventsTableViewController: UITableViewController {
     }
     
     func loadData() {
-        var addAllFriends: PFQuery = PFQuery(className: "Event")
-        addAllFriends.findObjectsInBackgroundWithBlock({
+        var addAllEvents: PFQuery = PFQuery(className: "Event")
+        addAllEvents.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) -> Void in
             
             self.eventsData.removeAll(keepCapacity: false)

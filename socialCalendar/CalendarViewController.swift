@@ -13,9 +13,11 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
     var calendar = JTCalendar()
     var eventsByDate: NSMutableDictionary!
     var dateFormatter = NSDateFormatter()
+    var events = [PFObject]()
 
     @IBOutlet weak var contentView: JTCalendarContentView!
     @IBOutlet weak var menuView: JTCalendarMenuView!
+
 
     func calendarHaveEvent(calendar: JTCalendar!, date: NSDate!) -> Bool {
         var key = dateFormatter.stringFromDate(date)
@@ -32,6 +34,22 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
     }
 
     func randomizeEvents() {
+        
+//        var addAllEvents: PFQuery = PFQuery(className: "Event")
+//        addAllEvents.findObjectsInBackgroundWithBlock({
+//            (objects: [AnyObject]!, error: NSError!) -> Void in
+//            
+////            self.events.removeAll(keepCapacity: false)
+//            self.eventsByDate.removeAllObjects()
+//            
+//            for object in objects {
+//                let event = object["user"] as PFUser
+//                if event.objectId == PFUser.currentUser().objectId {
+//                    self.eventsByDate[self.dateFormatter.stringFromDate(object["date"] as NSDate)]?.addObject(object["date"] as NSDate)
+//                }
+//            }
+//        })
+        
         eventsByDate = NSMutableDictionary()
         for i in 1...30 {
             var randomDate = NSDate(timeInterval: NSTimeInterval(rand() % (3600 * 24 * 60)), sinceDate: NSDate())
