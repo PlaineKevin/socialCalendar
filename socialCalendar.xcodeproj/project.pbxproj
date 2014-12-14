@@ -28,6 +28,7 @@
 		1079FEFB1A2D4AD900654080 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1079FEFA1A2D4AD900654080 /* Images.xcassets */; };
 		1079FEFE1A2D4AD900654080 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1079FEFC1A2D4AD900654080 /* LaunchScreen.xib */; };
 		1079FF0A1A2D4AD900654080 /* socialCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079FF091A2D4AD900654080 /* socialCalendarTests.swift */; };
+		10A615CD1A3E4F8100E58D82 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 10A615CC1A3E4F8100E58D82 /* README */; };
 		10F2D1321A2E29C300DDD58D /* EditFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D1311A2E29C300DDD58D /* EditFriendsTableViewController.swift */; };
 		10F2D1361A2E2AB000DDD58D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D1351A2E2AB000DDD58D /* Friend.swift */; };
 		10F2D1381A2E2ABD00DDD58D /* FriendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F2D1371A2E2ABD00DDD58D /* FriendManager.swift */; };
@@ -70,6 +71,7 @@
 		1079FF031A2D4AD900654080 /* socialCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = socialCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079FF081A2D4AD900654080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079FF091A2D4AD900654080 /* socialCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = socialCalendarTests.swift; sourceTree = "<group>"; };
+		10A615CC1A3E4F8100E58D82 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = socialCalendar/README; sourceTree = "<group>"; };
 		10F2D1311A2E29C300DDD58D /* EditFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFriendsTableViewController.swift; sourceTree = "<group>"; };
 		10F2D1331A2E2A9600DDD58D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		10F2D1351A2E2AB000DDD58D /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		1079FEE51A2D4AD800654080 = {
 			isa = PBXGroup;
 			children = (
+				10A615CC1A3E4F8100E58D82 /* README */,
 				025122581A37953000F3900A /* socialCalendar-Bridging-Header.h */,
 				1079FEF01A2D4AD900654080 /* socialCalendar */,
 				1079FF061A2D4AD900654080 /* socialCalendarTests */,
@@ -308,6 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10A615CD1A3E4F8100E58D82 /* README in Resources */,
 				02F9119C1A2E61EE00B15744 /* Kevin.storyboard in Resources */,
 				025122511A3782CB00F3900A /* Main.storyboard in Resources */,
 				02F911991A2E604C00B15744 /* Miles.storyboard in Resources */,

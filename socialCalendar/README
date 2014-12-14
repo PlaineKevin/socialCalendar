@@ -1,0 +1,14 @@
+README
+
+I worked with miles
+
+Implementation:
+	13 scenes from view controllers, navigation controllers, tab bar view controller, regular views, table view controllers, table views
+	tab bar view controller that lets us select between calendar view, friends list, and events
+	log in is implemented with Parse
+	We also use Parse to create personalized accounts(for friends, events, and calendar)
+	We use Parse to store all of our information
+	CoreData was implemented(most of the code is just commented out but ideally would work with 10 minutes of tweaking)
+	ImageViews as well as default pictures
+	Dates are implemented with DatePickers
+	3rd party calendar view
