@@ -17,9 +17,14 @@ class EventsTableViewController: UITableViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
+        // self-sizing table view cells
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItems?.insert(self.editButtonItem(), atIndex: 1)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -27,6 +32,13 @@ class EventsTableViewController: UITableViewController {
         self.loadData()
         
         self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadData()
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,7 +71,7 @@ class EventsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as EventTableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as EventTableViewCell
 
         // Configure the cell...
         let event: PFObject = self.eventsData[indexPath.row] as PFObject
@@ -122,9 +134,7 @@ class EventsTableViewController: UITableViewController {
                 })
                 
             }
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
 
@@ -142,6 +152,10 @@ class EventsTableViewController: UITableViewController {
         // Return NO if you do not want the item to be re-orderable.
         return true
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 120
+    }
 
 
 
@@ -150,23 +164,23 @@ class EventsTableViewController: UITableViewController {
 //     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        if segue.identifier == "eventDetailSegue" {
+        if segue.identifier == "showEventDetail" {
             
             let destinationViewController = segue.destinationViewController as EventDetailsTableViewController
             
-            if searchDisplayController!.active {
-                
-                if let selectedRow = searchDisplayController!.searchResultsTableView.indexPathForSelectedRow()?.row {
-                    
-                    //                    destinationViewController.friend = filteredFriends?[selectedRow]
-                }
-                
-            } else {
-                //                let friend = sortedFriends[tableView.indexPathForSelectedRow()!.row]
+//            if searchDisplayController!.active {
+//                
+//                if let selectedRow = searchDisplayController!.searchResultsTableView.indexPathForSelectedRow()?.row {
+//                    
+//                    //                    destinationViewController.friend = filteredFriends?[selectedRow]
+//                }
+//                
+//            } else {
+//                //                let friend = sortedFriends[tableView.indexPathForSelectedRow()!.row]
                 let event = eventsData[tableView.indexPathForSelectedRow()!.row]
                 
                 destinationViewController.event = event
-            }
+//            }
         }
     }
 

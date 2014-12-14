@@ -2,7 +2,7 @@
 //  EditEventTableViewController.swift
 //  socialCalendar
 //
-//  Created by Miles Crabill on 12/13/14.
+//  Created by Kevin Nguyen on 12/13/14.
 //  Copyright (c) 2014 AIT. All rights reserved.
 //
 
@@ -16,11 +16,13 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
     @IBOutlet weak var eventEditors: UITextView!
     @IBOutlet weak var eventDetails: UITextView!
 
+    @IBOutlet weak var eventNameTextField: UITextField!
+    
     var event: PFObject!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let initialEvent = self.event {
             eventName.text = initialEvent["name"] as String
             eventDate.date = initialEvent["date"] as NSDate
@@ -41,15 +43,48 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
         }
         
         eventDate.addTarget(self, action: "datePickerChanged:",forControlEvents: UIControlEvents.ValueChanged)
-
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Done, target: self, action: "saveButtonTap")
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+
+    @IBAction func cancelButton(sender: AnyObject) {
+        println("canceled")
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func saveEvent(sender: AnyObject) {
+        if event == nil {
+            //    createFriendWithContent(usernameTextField.text, realName: realNameTextField.text, image: imageView.image)
+            createEventInParse(eventNameTextField.text, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
+            
+            //            FriendManager.sharedFriendManager.friends.append(friend)
+        }
+        else {
+            //            friend.userName = usernameTextField.text
+            //            friend.realName = realNameTextField.text
+            //            friend.image = imageView.image
+            //            AppDelegate.sharedAppDelegate.saveContext()
+            
+            updateEventInParse(eventNameTextField.text!, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
+        }
+    }
+    
+    @IBAction func imageTap(sender: UITapGestureRecognizer) {
+        if UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum) {
+            
+            var imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .SavedPhotosAlbum
+            imagePicker.allowsEditing = false
+            imagePicker.delegate = self
+            
+            presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
     
     @IBAction func handleImageTap(sender: UITapGestureRecognizer) {
         
@@ -84,7 +119,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
 
     func saveButtonTap() {
         if event == nil {
-            createEventInParse(eventName.text!, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
+            createEventInParse(eventNameTextField.text, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
         } else {
 //            CoreData 
 //            event.name = eventName.text
@@ -93,7 +128,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
 //            .image
 //            AppDelegate.sharedAppDelegate.saveContext()
 
-            updateEventInParse(eventName.text!, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
+            updateEventInParse(eventName!.text, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
         }
 
     }
