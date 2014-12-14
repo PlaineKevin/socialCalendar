@@ -10,7 +10,7 @@ import UIKit
 
 class FriendDetailsTableViewController: UITableViewController {
     
-    var friend: Friend!
+    var friend: PFObject!
 
     @IBOutlet weak var userNameDetails: UILabel!
     @IBOutlet weak var realNameDetails: UILabel!
@@ -30,9 +30,18 @@ class FriendDetailsTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        imageView.image = friend.image
-        userNameDetails.text = friend.userName
-        realNameDetails.text = friend.realName
+//        imageView.image = friend.image
+        let imageObject = friend["image"] as PFFile
+        imageObject.getDataInBackgroundWithBlock({
+            (imageData: NSData!, error: NSError!) -> Void in
+            if error == nil {
+                let image = UIImage(data: imageData)
+                self.imageView.image = image
+            }
+            
+        })
+        userNameDetails.text = friend["username"] as String
+        realNameDetails.text = friend["realName"] as String?
 
     }
     

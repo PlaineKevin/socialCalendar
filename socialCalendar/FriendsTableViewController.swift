@@ -16,7 +16,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
     var filteredFriends: [Friend]?
 //    var sortedFriends = [Friend]()
     
-    var friendsData: NSMutableArray = NSMutableArray()
+    var friendsData = [PFObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,31 +39,40 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
         self.loadData()
         
         // might need this here but not if we reload data somewhere else
-//        tableView.reloadData()
+        tableView.reloadData()
         
     }
     
-//    override func viewDidAppear(animated: Bool) {
-//        self.loadData()
-//    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadData()
+        
+        tableView.reloadData()
+    }
     
     func loadData() {
-        // avoid duplicating data
-        friendsData.removeAllObjects()
+        // get rid of duplicates
         
-        var findAllFriends: PFQuery = PFQuery(className: "Friend")
-        findAllFriends.findObjectsInBackgroundWithBlock({
+        var addAllFriends: PFQuery = PFQuery(className: "Friend")
+        addAllFriends.findObjectsInBackgroundWithBlock({
             (objects: [AnyObject]!, error: NSError!) -> Void in
             var counter = 0
+            var subtracter = 0;
+            var friendsCount = self.friendsData.count
+            
+            for(subtracter; subtracter < friendsCount; subtracter++) {
+                self.friendsData.removeLast()
+            }
+            
             for object in objects {
-                println("\(counter)")
-                self.friendsData.addObject(object)
+                self.friendsData.append(object as PFObject)
+//                self.friendsData.insert(object as PFObject, atIndex: counter)
                 counter += 1
             }
+            
+            self.tableView.reloadData()
         })
-        
-        self.tableView.reloadData()
-        
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,8 +94,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
             }
             
         } else {
-            println("\(friendsData.count)")
-            return friendsData.count
+            return self.friendsData.count
         }
     }
     
@@ -109,13 +117,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
 //
         cell.usernameLabel.text = friend.objectForKey("username") as String
         cell.realnameLabel.text = friend.objectForKey("realName") as? String
-//        let imageFile = friend["image"] as PFFile
-//        imageFile.getDataInBackgroundWithBlock {
-//            (imageData: NSData!, error: NSError!) -> Void in
-//            
-//            let image = UIImage(data:imageData)
-//            cell.userImage?.image = image
-//        }
+        
+        let imageFile = friend["image"] as PFFile
+        imageFile.getDataInBackgroundWithBlock {
+            (imageData: NSData!, error: NSError!) -> Void in
+            
+            let image = UIImage(data:imageData)
+            cell.userImage?.image = image
+        }
 
         return cell
     }
@@ -130,9 +139,21 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
 //            sortedFriends.removeAtIndex(indexPath.row)
 //            AppDelegate.sharedAppDelegate.saveContext()
             
-            friendsData.removeObjectAtIndex(indexPath.row)
+//            friendsData.removeAtIndex(indexPath.row)
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            friendsData[indexPath.row].deleteInBackgroundWithBlock({
+                (bools: Bool, error: NSError!) -> Void in
+                
+                if error != nil {
+                    println("error")
+                }
+                
+//                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.loadData()
+                
+            })
+            
         }
     }
     
@@ -150,8 +171,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
 //        sortedFriends.insert(friendToMove, atIndex: toIndexPath.row)
         
         let friendToMove: PFObject = friendsData[fromIndexPath.row] as PFObject
-        friendsData.removeObjectAtIndex(fromIndexPath.row)
-        friendsData.insertObject(friendToMove, atIndex: toIndexPath.row)
+        friendsData.removeAtIndex(fromIndexPath.row)
+        friendsData.insert(friendToMove, atIndex: toIndexPath.row)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -183,14 +204,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate, UI
                 
                 if let selectedRow = searchDisplayController!.searchResultsTableView.indexPathForSelectedRow()?.row {
                     
-                    destinationViewController.friend = filteredFriends?[selectedRow]
+//                    destinationViewController.friend = filteredFriends?[selectedRow]
                 }
                 
             } else {
 //                let friend = sortedFriends[tableView.indexPathForSelectedRow()!.row]
                 let friend = friendsData[tableView.indexPathForSelectedRow()!.row]
                 
-//                destinationViewController.friend = friend
+                destinationViewController.friend = friend
             }
         }
     }
