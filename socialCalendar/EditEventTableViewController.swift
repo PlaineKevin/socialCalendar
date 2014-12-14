@@ -128,7 +128,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
 //            .image
 //            AppDelegate.sharedAppDelegate.saveContext()
 
-            updateEventInParse(eventName!.text, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
+            updateEventInParse(eventNameTextField.text, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
         }
 
     }
@@ -142,6 +142,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
         addedEvent["details"] = details
         addedEvent["editors"] = editors
         addedEvent["viewers"] = viewers
+        addedEvent["user"] = PFUser.currentUser()
         if image != nil {
             let imageData = UIImagePNGRepresentation(image)
             let imageFile: PFFile = PFFile(data: imageData)
@@ -202,6 +203,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
                         })
                     }
                 }
+                self.dismissViewControllerAnimated(true, completion: nil)
             })
 //        })
     }
