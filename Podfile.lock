@@ -1,15 +1,18 @@
 PODS:
   - Bolts (1.1.3)
+  - CMPopTipView (2.2.0)
   - JTCalendar (1.1.8)
   - Parse (1.6.0):
     - Bolts (~> 1.1.3)
 
 DEPENDENCIES:
+  - CMPopTipView
   - JTCalendar (~> 1.1)
   - Parse
 
 SPEC CHECKSUMS:
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  CMPopTipView: f731ea93316c4f964d3d5d8e71b4ba0ae30bf5a4
   JTCalendar: 705b2f3f64a9ef8845b1165dc61064cca723f12c
   Parse: f15dfacd941ee8084a5decbef486da8b223c2810
 
