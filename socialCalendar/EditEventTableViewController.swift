@@ -28,6 +28,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
             eventDate.date = initialEvent["date"] as NSDate
             eventEditors.text = initialEvent["details"] as String
             eventDetails.text = initialEvent["editors"] as String
+            eventNameTextField.text = initialEvent["name"] as String
             
             if eventImage.image != nil {
                 let imageObject = initialEvent["image"] as PFFile
@@ -69,7 +70,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
             //            friend.image = imageView.image
             //            AppDelegate.sharedAppDelegate.saveContext()
             
-            updateEventInParse(eventNameTextField.text!, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
+            updateEventInParse(eventNameTextField.text, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
         }
     }
     
@@ -128,7 +129,7 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
 //            .image
 //            AppDelegate.sharedAppDelegate.saveContext()
 
-            updateEventInParse(eventNameTextField.text, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
+            updateEventInParse(eventName.text!, date: eventDate.date, details: eventDetails.text, editors: eventEditors.text, viewers: eventEditors.text, image: eventImage.image)
         }
 
     }
@@ -177,34 +178,41 @@ class EditEventTableViewController: UITableViewController, UIImagePickerControll
 //            (objects: [AnyObject]!, error: NSError!) in
             query.findObjectsInBackgroundWithBlock({
                 (objects: [AnyObject]!, error: NSError!) in
-                for object in objects {
-                    if object["name"] as String == name {
-                        query.getObjectInBackgroundWithId(object.objectId, block: {
-                            (updated: PFObject!, error: NSError!) -> Void in
-                            updated["date"] = date
-                            updated["details"] = details
-                            updated["editors"] = editors
-                            updated["viewers"] = viewers
-                            let imageData = UIImagePNGRepresentation(image)
-                            let imageFile: PFFile = PFFile(data: imageData)
-                            updated["image"] = imageFile
-                            
-                            updated.saveInBackgroundWithBlock {
-                                success, error in
-                                if success && error == nil {
-                                    self.dismissViewControllerAnimated(true, completion: nil)
-                                } else {
-                                    var errorPopup = UIAlertController(title: "Updating event failed.", message: error.localizedDescription, preferredStyle: .Alert)
-                                    var okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
-                                    errorPopup.addAction(okayAction)
-                                    self.presentViewController(errorPopup, animated: true, completion: nil)
+                if error != nil {
+                    print(error)
+                } else {
+                    for object in objects {
+                        var username = object["name"] as String
+    //                    println("\(printing)")
+    //                    println("name: \(name)")
+                        if username == name {
+                            query.getObjectInBackgroundWithId(object.objectId, block: {
+                                (updated: PFObject!, error: NSError!) -> Void in
+                                updated["date"] = date
+                                updated["details"] = details
+                                updated["editors"] = editors
+                                updated["viewers"] = viewers
+                                let imageData = UIImagePNGRepresentation(image)
+                                let imageFile: PFFile = PFFile(data: imageData)
+                                updated["image"] = imageFile
+                                
+                                updated.saveInBackgroundWithBlock {
+                                    success, error in
+                                    if success && error == nil {
+                                        self.dismissViewControllerAnimated(true, completion: nil)
+                                    } else {
+                                        var errorPopup = UIAlertController(title: "Updating event failed.", message: error.localizedDescription, preferredStyle: .Alert)
+                                        var okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+                                        errorPopup.addAction(okayAction)
+                                        self.presentViewController(errorPopup, animated: true, completion: nil)
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        }
                     }
                 }
-                self.dismissViewControllerAnimated(true, completion: nil)
             })
+            dismissViewControllerAnimated(true, completion: nil)
 //        })
     }
 

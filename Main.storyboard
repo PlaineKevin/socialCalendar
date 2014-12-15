@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P81-Um-rG1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P81-Um-rG1">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -148,10 +148,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0R-Tb-51m" customClass="JTCalendarContentView">
-                                <rect key="frame" x="0.0" y="100" width="320" height="419"/>
+                                <rect key="frame" x="0.0" y="100" width="320" height="379"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZJ-pl-WRF">
-                                        <rect key="frame" x="160" y="209" width="1" height="1"/>
+                                        <rect key="frame" x="160" y="189" width="1" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="Ba9-jM-KTz"/>
@@ -172,17 +172,28 @@
                                     <constraint firstAttribute="height" constant="100" id="PHP-vZ-rPw"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEh-Ua-GUg">
+                                <rect key="frame" x="26" y="498" width="300" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="fSv-Sg-bUI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="H9k-pN-ww2" firstAttribute="leading" secondItem="w8q-Ym-1Z1" secondAttribute="leadingMargin" constant="-16" id="3gO-zi-Qpz"/>
+                            <constraint firstItem="QEh-Ua-GUg" firstAttribute="leading" secondItem="w8q-Ym-1Z1" secondAttribute="leadingMargin" constant="10" id="8EQ-uW-7eP"/>
+                            <constraint firstItem="qk3-6L-HHP" firstAttribute="top" secondItem="QEh-Ua-GUg" secondAttribute="bottom" id="AHq-dU-tYF"/>
                             <constraint firstItem="O0R-Tb-51m" firstAttribute="top" secondItem="H9k-pN-ww2" secondAttribute="bottom" id="GZc-g9-cmc"/>
                             <constraint firstAttribute="centerX" secondItem="H9k-pN-ww2" secondAttribute="centerX" id="Luh-8L-Dw2"/>
                             <constraint firstItem="O0R-Tb-51m" firstAttribute="leading" secondItem="w8q-Ym-1Z1" secondAttribute="leadingMargin" constant="-16" id="OKi-Ws-ntz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="O0R-Tb-51m" secondAttribute="trailing" constant="-16" id="RZT-wa-e7H"/>
                             <constraint firstItem="H9k-pN-ww2" firstAttribute="top" secondItem="w8q-Ym-1Z1" secondAttribute="topMargin" id="SDz-eZ-aZk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="H9k-pN-ww2" secondAttribute="trailing" constant="-16" id="UdG-FN-Nl4"/>
-                            <constraint firstItem="qk3-6L-HHP" firstAttribute="top" secondItem="O0R-Tb-51m" secondAttribute="bottom" id="lZe-Kz-j1o"/>
+                            <constraint firstItem="qk3-6L-HHP" firstAttribute="top" secondItem="O0R-Tb-51m" secondAttribute="bottom" constant="40" id="lZe-Kz-j1o"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calendar" id="XUT-DO-GDc"/>
@@ -190,12 +201,13 @@
                     <connections>
                         <outlet property="centerView" destination="EZJ-pl-WRF" id="JtT-EX-cNA"/>
                         <outlet property="contentView" destination="O0R-Tb-51m" id="cOZ-op-Uqv"/>
+                        <outlet property="detailsForEvent" destination="QEh-Ua-GUg" id="W0c-be-9GW"/>
                         <outlet property="menuView" destination="H9k-pN-ww2" id="45y-cY-vBx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Swe-LG-JTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-44" y="956"/>
+            <point key="canvasLocation" x="-44" y="949"/>
         </scene>
         <!--Friends-->
         <scene sceneID="b93-60-UjL">
@@ -883,7 +895,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Section-4" id="KUy-VV-T7h">
+                            <tableViewSection headerTitle="Picture" id="KUy-VV-T7h">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="148" id="XM6-5T-eRx">
                                         <autoresizingMask key="autoresizingMask"/>

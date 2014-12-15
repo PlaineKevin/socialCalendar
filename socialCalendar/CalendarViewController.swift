@@ -19,6 +19,8 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
 
     @IBOutlet weak var centerView: UIView!
 
+    @IBOutlet weak var detailsForEvent: UILabel!
+    
     func calendarHaveEvent(calendar: JTCalendar!, date: NSDate!) -> Bool {
         var key = dateFormatter.stringFromDate(date)
 
@@ -41,12 +43,14 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
                     message += output
                 }
             }
+            
+            detailsForEvent.text = message
 
-            var popTipView = CMPopTipView(message: "\(message)")
-            popTipView.dismissTapAnywhere = true
-            popTipView.animation = CMPopTipAnimationSlide;
-            popTipView.has3DStyle = true;
-            popTipView.presentPointingAtView(centerView, inView: self.view, animated: true)
+//            var popTipView = CMPopTipView(message: "\(message)")
+//            popTipView.dismissTapAnywhere = true
+//            popTipView.animation = CMPopTipAnimationSlide;
+//            popTipView.has3DStyle = true;
+//            popTipView.presentPointingAtView(centerView, inView: self.view, animated: true)
         }
 
     }
