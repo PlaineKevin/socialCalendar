@@ -11,56 +11,44 @@ import UIKit
 class CalendarViewController: UIViewController, JTCalendarDataSource {
 
     var calendar = JTCalendar()
-    var eventsByDate: NSMutableDictionary!
+    var eventsByDate = NSMutableDictionary()
     var dateFormatter = NSDateFormatter()
-    var events = [PFObject]()
 
     @IBOutlet weak var contentView: JTCalendarContentView!
     @IBOutlet weak var menuView: JTCalendarMenuView!
 
+    @IBOutlet weak var centerView: UIView!
 
     func calendarHaveEvent(calendar: JTCalendar!, date: NSDate!) -> Bool {
         var key = dateFormatter.stringFromDate(date)
-        var events = eventsByDate[key] as NSArray?
-        if events != nil && events?.count > 0 {
-            return true
+
+        if let specificDate = eventsByDate[key] as? NSMutableArray {
+            if specificDate.count > 0 {
+                return true
+            }
         }
         return false
     }
 
     func calendarDidDateSelected(calendar: JTCalendar!, date: NSDate!) {
         var key = dateFormatter.stringFromDate(date)
-        var events = eventsByDate[key] as NSArray?
-    }
+        if let events = eventsByDate[key] as? NSMutableArray {
+            var message = ""
+            for event in events {
+                if key == dateFormatter.stringFromDate(event["date"] as NSDate) {
+                    var output = event["name"] as String
 
-    func randomizeEvents() {
-        
-//        var addAllEvents: PFQuery = PFQuery(className: "Event")
-//        addAllEvents.findObjectsInBackgroundWithBlock({
-//            (objects: [AnyObject]!, error: NSError!) -> Void in
-//            
-////            self.events.removeAll(keepCapacity: false)
-//            self.eventsByDate.removeAllObjects()
-//            
-//            for object in objects {
-//                let event = object["user"] as PFUser
-//                if event.objectId == PFUser.currentUser().objectId {
-//                    self.eventsByDate[self.dateFormatter.stringFromDate(object["date"] as NSDate)]?.addObject(object["date"] as NSDate)
-//                }
-//            }
-//        })
-        
-        eventsByDate = NSMutableDictionary()
-        for i in 1...30 {
-            var randomDate = NSDate(timeInterval: NSTimeInterval(rand() % (3600 * 24 * 60)), sinceDate: NSDate())
-            var key = dateFormatter.stringFromDate(randomDate)
-
-            if eventsByDate[key] == nil {
-                eventsByDate[key] = NSMutableArray()
+                    message += output
+                }
             }
 
-            eventsByDate[key]?.addObject(randomDate)
+            var popTipView = CMPopTipView(message: "\(message)")
+            popTipView.dismissTapAnywhere = true
+            popTipView.animation = CMPopTipAnimationSlide;
+            popTipView.has3DStyle = true;
+            popTipView.presentPointingAtView(centerView, inView: self.view, animated: true)
         }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -68,8 +56,35 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
         calendar.reloadData()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        refreshEvents()
+    }
+
+    func refreshEvents() {
+        var addAllEvents = PFQuery(className: "Event")
+        addAllEvents.whereKey("user", equalTo: PFUser.currentUser())
+        addAllEvents.findObjectsInBackgroundWithBlock({
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+
+            self.eventsByDate.removeAllObjects()
+
+            for object in objects {
+                let event = object["user"] as PFUser
+                if event.objectId as String == PFUser.currentUser().objectId as String {
+                    var key = self.dateFormatter.stringFromDate(object["date"] as NSDate)
+                    self.eventsByDate[key] = NSMutableArray()
+                    self.eventsByDate[key]?.addObject(object as PFObject)
+                }
+            }
+            
+        })
+    }
+
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshEvents()
 
         self.calendar.calendarAppearance.calendar().firstWeekday = 2; // Sunday == 1, Saturday == 7
         self.calendar.calendarAppearance.dayCircleRatio = 9 / 10;
@@ -96,9 +111,8 @@ class CalendarViewController: UIViewController, JTCalendarDataSource {
 
         dateFormatter.dateFormat = "dd-MM-yyyy"
 
-        randomizeEvents()
-
         // Do any additional setup after loading the view.
+        calendar.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P81-Um-rG1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P81-Um-rG1">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -118,11 +118,11 @@
             </objects>
             <point key="canvasLocation" x="82" y="212"/>
         </scene>
-        <!--Item-->
+        <!--Events-->
         <scene sceneID="IxW-Mk-xfA">
             <objects>
-                <navigationController id="Ooc-nf-ozZ" customClass="SocialCalendarViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="HlR-GH-KCe"/>
+                <navigationController id="Ooc-nf-ozZ" userLabel="Events" customClass="SocialCalendarViewController" customModule="socialCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" id="HlR-GH-KCe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G0K-CS-e1U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -149,7 +149,21 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0R-Tb-51m" customClass="JTCalendarContentView">
                                 <rect key="frame" x="0.0" y="100" width="320" height="419"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZJ-pl-WRF">
+                                        <rect key="frame" x="160" y="209" width="1" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="Ba9-jM-KTz"/>
+                                            <constraint firstAttribute="height" constant="1" id="hvy-kl-DLH"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="EZJ-pl-WRF" secondAttribute="centerY" id="7QA-qW-H36"/>
+                                    <constraint firstAttribute="centerX" secondItem="EZJ-pl-WRF" secondAttribute="centerX" id="Z6B-ZL-tRE"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H9k-pN-ww2" customClass="JTCalendarMenuView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -174,6 +188,7 @@
                     <tabBarItem key="tabBarItem" title="Calendar" id="XUT-DO-GDc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="centerView" destination="EZJ-pl-WRF" id="JtT-EX-cNA"/>
                         <outlet property="contentView" destination="O0R-Tb-51m" id="cOZ-op-Uqv"/>
                         <outlet property="menuView" destination="H9k-pN-ww2" id="45y-cY-vBx"/>
                     </connections>
