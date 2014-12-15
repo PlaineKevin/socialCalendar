@@ -1,6 +1,8 @@
 README
 
 I worked with miles
+Currently it is more like a personal calendar with the potential for easy extension into shared cloud calendars
+Users can make edits if they are on the same account but not if they are just friends.
 
 Implementation:
 	13 scenes from view controllers, navigation controllers, tab bar view controller, regular views, table view controllers, table views
